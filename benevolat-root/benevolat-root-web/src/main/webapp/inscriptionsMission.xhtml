@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a4j="http://richfaces.org/a4j" xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:rich="http://richfaces.org/rich" xmlns:p="http://primefaces.org/rich">
+
+<body>
+<ui:composition template="WEB-INF/templates/template.xhtml">
+
+    <ui:define name="title"><ui:insert name="Rich faces sample" /></ui:define>
+
+    <ui:define name="mainContent">
+		
+		<h1>Inscriptions pour la mission : #{inscriptionsMissionView.mission.titre}</h1>
+
+	   	<h:form>
+		   	<rich:accordion switchType="client">
+				<rich:accordionItem header="Demandes en attente (encore #{inscriptionsMissionView.mission.placesRestantes} place-s)">
+	   				<div style="position:relative; width:100%; height:100%; float:left;">
+				   		<rich:extendedDataTable value="#{inscriptionsMissionView.inscriptionsEnCours}"
+	                                var="i" id="tableEC" frozenColumns="5"
+	                                style="height:100%; width:60%;" selectionMode="none">         
+				            
+				            <rich:column width="160px">
+				                <f:facet name="header">
+				                    <h:outputText value="Bénévole"/>
+				                </f:facet>
+				                 <h:commandLink id="cmdNextBenevole" action="profileBenevole">
+						            <a4j:param name="nextBenevole" value="#{i.benevole.id}" assignTo="#{benevoleView.nextBenevole}"/>
+				                	<h:outputText value="#{i.benevole.nom} #{i.benevole.prenom}"/>
+				                </h:commandLink>
+				            </rich:column>
+				            
+				            <rich:column width="200px">
+				                <f:facet name="header">
+				                    <h:outputText value="Date d'inscription"/>
+				                </f:facet>
+				                <h:outputText value="#{i.dateInscription()}"/>
+				            </rich:column>
+				            
+					       <rich:column width="100px">
+				                <f:facet name="header">
+				                    <h:outputText value="Réponse"/>
+				                </f:facet>
+				                <h:commandButton value="Index" action="index">
+				                	<a4j:param name="nextInscriptionMission" value="#{i.id}" assignTo="#{inscriptionsMissionView.nextInscriptionMission}"/>
+				                </h:commandButton>
+				                <h:commandButton value="Répondre">
+							        <rich:componentControl target="popup" operation="show" />
+							    </h:commandButton>
+				            </rich:column>
+				            
+		       			</rich:extendedDataTable>
+			   		</div>
+			   	</rich:accordionItem>
+			   	<rich:popupPanel id="popup" modal="false" autosized="true" resizeable="false">
+			        <f:facet name="header">
+			            <h:outputText value="Réponse à #{i.benevole.nom} #{i.benevole.prenom}" />
+			        </f:facet>
+			        <f:facet name="controls">
+			            <h:outputLink value="#" onclick="#{rich:component('popup')}.hide(); return false;">
+			                X
+			            </h:outputLink>
+			        </f:facet>
+			        <p>Vous êtes sur le point de répondre à une inscription. Vous pouvez ici laisser un commentaire.</p>
+	                <h:inputTextarea label="Description" id="description" rows="3" cols="50" required="false" value="#{i.commentaire}">
+	                    <f:validateLength minimum="0" maximum="500" />
+	                </h:inputTextarea>
+	                <h:selectOneRadio id="subscriptions" value="#{i.selectReponse}" required="true">
+						<f:selectItem id="item1" itemLabel="Accepter" itemValue="A" />
+			        	<f:selectItem id="item2" itemLabel="Refuser" itemValue="R" />
+			    	</h:selectOneRadio>
+			    	 <h:outputLink value="#" onclick="#{rich:component('popup')}.hide(); return true;">
+						Valider
+					</h:outputLink>
+					<h:outputText value="" />
+			        <h:outputLink value="#" onclick="#{rich:component('popup')}.hide(); return false;">
+						Annuler
+					</h:outputLink>
+			    </rich:popupPanel>
+							    
+			   	<rich:accordionItem header="Demandes acceptées">
+	   				<div style="position:relative; width:100%; height:100%; float:left;">
+				   		<rich:extendedDataTable value="#{inscriptionsMissionView.inscriptionsAcceptees}"
+	                                var="i" id="tableAcc" frozenColumns="5"
+	                                style="height:100%; width:60%;" selectionMode="none">         
+				            
+				            <rich:column width="160px">
+				                <f:facet name="header">
+				                    <h:outputText value="Bénévole"/>
+				                </f:facet>
+				                	<h:commandLink id="cmdNextBenevole" action="profileBenevole">
+							            <a4j:param name="nextBenevole" value="#{i.benevole.id}" assignTo="#{benevoleView.nextBenevole}"/>
+					                	<h:outputText value="#{i.benevole.nom} #{i.benevole.prenom}"/>
+					                </h:commandLink>
+				            </rich:column>
+				            
+				            <rich:column width="200px">
+				                <f:facet name="header">
+				                    <h:outputText value="Date d'inscription"/>
+				                </f:facet>
+				                <h:outputText value="#{i.dateInscription()}"/>
+				            </rich:column>
+				            
+					       <rich:column width="100px">
+				                <f:facet name="header">
+				                    <h:outputText value="Réponse"/>
+				                </f:facet>
+				                <h:outputText value="#{i.status}"/>
+				            </rich:column>
+				            
+		       			</rich:extendedDataTable>
+			   		</div>
+			   	</rich:accordionItem>
+			   	
+			   	<rich:accordionItem header="Demandes refusées">
+	   				<div style="position:relative; width:100%; height:100%; float:left;">
+				   		<rich:extendedDataTable value="#{inscriptionsMissionView.inscriptionsRefusees}"
+	                                var="i" id="tableRef" frozenColumns="5"
+	                                style="height:100%; width:60%;" selectionMode="none">         
+				            
+				            <rich:column width="160px">
+				                <f:facet name="header">
+				                    <h:outputText value="Bénévole"/>
+				                </f:facet>
+				                	<h:commandLink id="cmdNextBenevole" action="profileBenevole">
+					                	<a4j:param name="nextBenevole" value="#{i.benevole.id}" assignTo="#{benevoleView.nextBenevole}"/>
+					                	<h:outputText value="#{i.benevole.nom} #{i.benevole.prenom}"/>
+					                </h:commandLink>
+				            </rich:column>
+				            
+				            <rich:column width="200px">
+				                <f:facet name="header">
+				                    <h:outputText value="Date d'inscription"/>
+				                </f:facet>
+				                <h:outputText value="#{i.dateInscription()}"/>
+				            </rich:column>
+				            
+					       <rich:column width="100px">
+				                <f:facet name="header">
+				                    <h:outputText value="Réponse"/>
+				                </f:facet>
+				                <h:outputText value="#{i.status}"/>
+				            </rich:column>
+				            
+		       			</rich:extendedDataTable>
+			   		</div>
+			   	</rich:accordionItem>
+			</rich:accordion>
+		</h:form>
+    </ui:define>
+    
+</ui:composition>
+</body>
+</html>

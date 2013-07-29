@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a4j="http://richfaces.org/a4j" xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:rich="http://richfaces.org/rich" xmlns:p="http://primefaces.org/rich">
+
+<h:head>
+    <title>#{sessionBean.titre}</title>
+    <meta http-equiv="content-type" content="text/xhtml; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="#{request.contextPath}/resources/css/style.css"/>
+</h:head>
+
+<h:body>
+
+<div class="centerContainer" id="main">
+	
+	<!-- HEADER -->
+	<div class="pageHeader">
+		<div id="logoArea">
+			<h:panelGroup id="logo">
+                <img src="#{request.contextPath}/images/logo.jpg" height="91"/>
+            </h:panelGroup>
+		</div>
+
+		<div id="photosArea">
+			<h:panelGroup id="photos">
+                 <img src="#{request.contextPath}/images/1.jpg" height="91"/>
+                 <img src="#{request.contextPath}/images/2.jpg" height="91"/>
+                 <img src="#{request.contextPath}/images/3.jpg" height="91"/>
+                 <img src="#{request.contextPath}/images/4.jpg" height="91"/>
+                 <img src="#{request.contextPath}/images/5.jpg" height="91"/>
+            </h:panelGroup>
+		</div>
+    	
+		 <div id="toolbarArea">
+		 	<h:form id="formIcon">
+				<rich:toolbar height="35" itemSeparator="grid">
+			        <rich:toolbarGroup>
+			            <h:commandLink id="cmdHome" action="index">
+			            	<h:graphicImage value="/images/icones/home.png" styleClass="pic" alt="home" width="20px" />
+			            </h:commandLink>
+				        <h:commandLink id="cmdLogin" value="Login" action="login" rendered="#{not sessionBean.log}">
+<!-- 			            	<h:graphicImage value="/images/icones/profile.png" styleClass="pic" alt="home" width="20px" /> -->
+			            </h:commandLink>
+			            <h:commandLink id="cmdMyProfile" value="Mon profil" action="#{sessionBean.monProfil()}" rendered="#{sessionBean.log}">
+<!--							<h:graphicImage value="/images/icones/profile.png" styleClass="pic" alt="home" width="20px" /> -->
+			            </h:commandLink>
+			            <h:commandLink id="cmdMyMissions" value="Mes missions" action="#{sessionBean.myMissions()}" rendered="#{sessionBean.log}">
+<!-- 			            	<h:graphicImage value="/images/icones/missions.png" styleClass="pic" alt="home" width="20px" /> -->
+			            </h:commandLink>
+						<h:commandLink id="cmdLogout" action="#{loginView.logout()}" rendered="#{sessionBean.log}">
+			            	<h:graphicImage value="/images/icones/logout.png" styleClass="pic" alt="home" width="20px" />
+			            </h:commandLink>
+			        </rich:toolbarGroup>
+			        <rich:toolbarGroup location="right">
+	            		<h:inputText styleClass="barsearch" value="#{searchView.searchText}"/>
+	            	<h:commandLink id="cmSearchView" action="searchView">
+			            	<h:graphicImage value="/images/icones/search.png" styleClass="pic" alt="home" width="20px" />
+	            	</h:commandLink>
+	        	</rich:toolbarGroup>
+    		</rich:toolbar>
+		    </h:form>
+		</div>
+
+<!--  		<div id="searchArea"> -->
+<!-- 			<h:panelGroup id="boiteRecherche"> -->
+<!-- 				<h:outputText value="Recherche" /> -->
+<!-- 			</h:panelGroup> -->
+<!-- 		</div> -->
+	</div>
+	
+	<!-- MIDDLE -->
+	<div class="pageMiddle">
+		<div id="menuArea">
+			<h:panelGroup id="menu">
+                <h:form id="form">
+   						<rich:panelMenu style="width:200px" itemMode="ajax" groupMode="ajax" groupExpandedLeftIcon="triangleUp"
+                			groupCollapsedLeftIcon="triangleDown" topGroupExpandedRightIcon="chevronUp"
+                			topGroupCollapsedRightIcon="chevronDown" itemLeftIcon="disc"
+   							>
+	       				<rich:panelMenuGroup label="Demo">
+								<rich:panelMenuItem name="allMissions"><h:commandLink id="cmdAllMission" value="Toutes les missions" action="allMissions"/></rich:panelMenuItem>
+								<rich:panelMenuItem name="allBenevoles"><h:commandLink id="cmdAllBenevoles" value="Tous les bénévoles" action="allBenevoles"/></rich:panelMenuItem>
+								<rich:panelMenuItem name="newFormation"><h:commandLink id="cmdNewFormation" value="Nouvelle formation" action="newFormation"/></rich:panelMenuItem>
+								<rich:panelMenuItem name="upload"><h:commandLink id="cmdUpload" value="Upload" action="upload"/></rich:panelMenuItem>
+								<rich:panelMenuItem name="attestation"><h:commandLink id="cmdAttestation" target="blank_" value="Attestation" action="attestation"/></rich:panelMenuItem>
+								<rich:panelMenuItem name="newAssociation"><h:commandLink id="cmdNewAssociation" value="newAssociation" action="newAssociation"/></rich:panelMenuItem>
+								<rich:panelMenuItem name="newBenevole"><h:commandLink id="cmdNewBenevole" value="newBenevole" action="newBenevole"/></rich:panelMenuItem>
+								<rich:panelMenuItem name="newEvenement"><h:commandLink id="cmdNewEvenement" value="newEvenement" action="newEvenement"/></rich:panelMenuItem>
+						</rich:panelMenuGroup>
+	               		<rich:panelMenuGroup label="A venir">
+	           					<rich:panelMenuItem label="Item 2.1" name="Item_2_1" />
+								<rich:panelMenuItem label="Item 2.2" name="Item_2_2" />
+								<rich:panelMenuItem label="Item 2.3" name="Item_2_3" />
+						</rich:panelMenuGroup>	
+						</rich:panelMenu>
+    			</h:form>
+            </h:panelGroup>
+		</div>
+		<div id="pageContent">
+			<ui:insert name="mainContent">Default content</ui:insert>
+		</div>
+		
+	</div>
+
+	<!-- FOOTER -->    
+    <div class="pageFooter">
+		<div id="footerCopyright">
+			<h:outputText value="ThomasCorminboeuf Copyright" />
+		</div>
+
+		<div id="footerLinks">
+			<a href="#{request.contextPath}/faces/apropos.xhtml"><h:outputText value="A propos" /></a>
+			<a href="#{request.contextPath}/faces/contact.xhtml"><h:outputText value="Contact" /></a>
+			<a href="#{request.contextPath}/faces/aide.xhtml"><h:outputText value="Aide" /></a>
+		</div>
+	</div>
+</div>
+
+</h:body>
+
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a4j="http://richfaces.org/a4j" xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:rich="http://richfaces.org/rich" xmlns:p="http://primefaces.org/rich">
+
+<body>
+<ui:composition template="WEB-INF/templates/template.xhtml">
+
+    <ui:define name="title"><ui:insert name="Rich faces sample" /></ui:define>
+<!--  border: 1px solid rgb(197,219,249); -->
+    <ui:define name="mainContent">
+		
+    	<!-- Evenements -->
+        <div style="position:relative; width:50%; height:50%; float:left;  margin:0px; padding:0px;">
+			<h:form>
+			<h:commandLink id="cmdAllEvenements" action="allEvenements"><h1>Evenements</h1></h:commandLink>
+		        <h:panelGrid columns="2" style="width:100%;">
+		            <a4j:outputPanel id="panel" layout="block">
+		                <a4j:repeat value="#{allEvenementsView.evenements}" var="e" rows="4" id="repeat">
+		                    <a4j:commandLink id="cmdEvenements" action="profileEvenement">
+		                    	<a4j:param name="nextEvenement" value="#{e.id}" assignTo="#{evenementView.nextEvenement}"/>
+			                    <rich:panel style="float:left; width:46%;">
+			                      <f:facet name="header">
+			                            <h:panelGroup>
+			                                <h:outputText value="#{e.nom}" style="font-weight:bold" />
+			                            </h:panelGroup>
+			                        </f:facet>
+			                        <h:panelGrid columns="2">
+			                        	<img src="#{request.contextPath}/images/escalade.jpg" align="left" height="30px"/>
+			                            <h:outputText value="DateDebut" />
+			                        </h:panelGrid>
+			                    </rich:panel>
+							</a4j:commandLink>
+		                </a4j:repeat>
+		            </a4j:outputPanel>
+		        </h:panelGrid>
+		    </h:form>
+		</div>
+		
+		<!-- Associations -->
+		<div style="position:relative; width:49%; height:50%; float:left;">
+			<h:form>
+			<h:commandLink id="cmdAllAssociation" action="allAssociations"><h1>Associations</h1></h:commandLink>
+		        <h:panelGrid columns="2" style="width:100%;">
+		            <a4j:outputPanel id="panel" layout="block">
+		                <a4j:repeat value="#{allAssociationsView.associations}" var="a" rows="4" id="repeat">
+		                    <a4j:commandLink id="cmdAssociation" action="profileAssociation">
+		                    	<a4j:param name="nextAssociation" value="#{a.id}" assignTo="#{associationView.nextAssociation}"/>
+			                    <rich:panel style="float:left; width:46%;">
+			                      <f:facet name="header">
+			                            <h:panelGroup>
+			                                <h:outputText value="#{a.acronyme}" style="font-weight:bold" />
+			                            </h:panelGroup>
+			                        </f:facet>
+			                        <h:panelGrid columns="2">
+			                        	<img src="#{request.contextPath}/images/ags.jpg" align="left" height="30px"/>
+			                            <h:outputText value="#{a.domaineNiveau1}" />
+			                        </h:panelGrid>
+			                    </rich:panel>
+							</a4j:commandLink>
+		                </a4j:repeat>
+		            </a4j:outputPanel>
+		        </h:panelGrid>
+		    </h:form>
+		</div>
+		
+		<!-- Missions ponctuelles -->
+		<div style="position:relative; width:50%; height:50%; float:left;">
+			<h:form>
+			<h:commandLink id="cmdAllMission" action="#{allMissionsView.ponctuelles}" ><h1>Missions ponctuelles</h1></h:commandLink>
+		        <h:panelGrid columns="2" style="width:100%;">
+		            <a4j:outputPanel id="panel" layout="block">
+		                <a4j:repeat value="#{allMissionsView.missionsPonctuelles}" var="m" rows="4" id="repeat">
+		                    <a4j:commandLink id="cmdMyFormations" action="profileMission">
+		                    	<a4j:param name="nextMission" value="#{m.id}" assignTo="#{missionView.nextMission}"/>
+			                    <rich:panel style="float:left; width:47%;">
+			                      <f:facet name="header">
+			                            <h:panelGroup>
+			                                <h:outputText value="#{m.titre}" style="font-weight:bold" />
+			                            </h:panelGroup>
+			                        </f:facet>
+			                        <h:panelGrid columns="1">
+			                        	<h:outputText value="#{m.association.acronyme}" />
+			                        	<h:outputText value="Date" />
+			                        </h:panelGrid>
+			                    </rich:panel>
+							</a4j:commandLink>
+		                </a4j:repeat>
+		            </a4j:outputPanel>
+		        </h:panelGrid>
+		    </h:form>
+		</div>
+		
+		<!-- Missions régulières -->
+		<div style="position:relative; width:49%; height:50%; float:left;">
+			<h:form>
+		    <h:commandLink id="cmdAllMission" action="#{allMissionsView.regulieres}"><h1>Missions régulières</h1></h:commandLink>
+		        <h:panelGrid columns="2" style="width:100%;">
+		            <a4j:outputPanel id="panel" layout="block">
+		                <a4j:repeat value="#{allMissionsView.missionsRegulieres}" var="m" rows="4" id="repeat">
+		                    <a4j:commandLink id="cmdMyFormations" action="profileMission">
+		                    	<a4j:param name="nextMission" value="#{m.id}" assignTo="#{missionView.nextMission}"/>
+			                    <rich:panel style="float:left; width:47%;">
+			                      <f:facet name="header">
+			                            <h:panelGroup>
+			                                <h:outputText value="#{m.titre}" style="font-weight:bold" />
+			                            </h:panelGroup>
+			                        </f:facet>
+			                        <h:panelGrid columns="1">
+			                        	<h:outputText value="#{m.association.acronyme}" />
+			                            <h:outputText value="#{m.lieu}" />
+			                        </h:panelGrid>
+			                    </rich:panel>
+							</a4j:commandLink>
+		                </a4j:repeat>
+		            </a4j:outputPanel>
+		        </h:panelGrid>
+		    </h:form>
+		</div>
+    </ui:define>
+    
+</ui:composition>
+</body>
+</html>

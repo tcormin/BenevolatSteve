@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a4j="http://richfaces.org/a4j" xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:rich="http://richfaces.org/rich" xmlns:p="http://primefaces.org/rich">
+
+<body>
+<ui:composition template="WEB-INF/templates/template.xhtml">
+
+    <ui:define name="title"><ui:insert name="Rich faces sample" /></ui:define>
+
+    <ui:define name="mainContent">
+    	<h1>Nouvelle association</h1>
+        <div style="position:relative; width:100%; height:100%; float:left;">
+		<h:form>
+	        <rich:graphValidator value="#{newAssociationView}" id="gv">
+	            <rich:panel header="Nouvelle association" style="width:95%">
+
+	                <h:panelGrid columns="3">
+	                
+	                	<h:outputText value="Nom d'utilisateur" />
+		                <h:inputText label="Username" id="username" required="true" width="200" value="#{newAssociationView.a.username}"/>
+
+		                <rich:message for="username" ajaxRendered="true" />
+		                
+		                <h:outputText value="Mot de passe" />
+		                <h:inputSecret label="Password" id="password" required="true" width="200" value="#{newAssociationView.a.password}"/>
+		                <rich:message for="password" ajaxRendered="true" />
+		                
+	                    <h:outputText value="Nom" />
+		                <h:inputText label="Nom" id="nom" required="true" width="200" value="#{newAssociationView.a.nom}"/>
+		                <rich:message for="nom" ajaxRendered="true" />
+		                
+		                <h:outputText value="Acronyme" />
+		                <h:inputText label="Acronyme" id="acronyme" required="true" width="200" value="#{newAssociationView.a.acronyme}"/>
+		                <rich:message for="acronyme" ajaxRendered="true" />
+		                
+		                <h:outputText value="Année de création" />
+		                <h:inputText label="Année de création" id="dateCreation" required="false" width="200" value="#{newAssociationView.a.dateCreation}"/>
+		                <rich:message for="dateCreation" ajaxRendered="true" />
+		                
+		                <h:outputText value="Email" />
+		                <h:inputText label="Email" id="email" required="false" width="200" value="#{newAssociationView.a.email}"/>
+		                <rich:message for="email" ajaxRendered="true" />
+		                
+		                <h:outputText value="Site web" />
+		                <h:inputText label="Site" id="url" required="false" width="200" value="#{newAssociationView.a.url}"/>
+		                <rich:message for="url" ajaxRendered="true" />
+		                
+		                <h:outputText value="Téléphone" />
+		                <h:inputText label="Téléphone" id="telephone" required="true" width="200" value="#{newAssociationView.a.telephone}"/>
+		                <rich:message for="telephone" ajaxRendered="true" />
+		                
+		                <h:outputText value="Adresse" />
+		                <h:inputText label="Adresse" id="adresse" required="true" width="200" value="#{newAssociationView.a.adresse}"/>
+		                <rich:message for="adresse" ajaxRendered="true" />
+		                
+		                <h:outputText value="NPA" />
+		                <h:inputText label="NPA" id="npa" required="true" width="200" value="#{newAssociationView.a.npa}"/>
+		                <rich:message for="npa" ajaxRendered="true" />
+		                
+		                <h:outputText value="Commune" />
+		                <h:inputText label="Commune" id="commune" required="true" width="200" value="#{newAssociationView.a.commune}"/>
+		                <rich:message for="commune" ajaxRendered="true" />
+		                
+		                <h:outputText value="Personne de contact" />
+		                <h:inputText label="Contact" id="contact" required="true" width="200" value="#{newAssociationView.a.contact}"/>
+		                <rich:message for="contact" ajaxRendered="true" />
+		                
+		                <h:outputText value="Domaine d'activité" />
+		                <rich:select value="#{newAssociationView.a.domaineNiveau1}" enableManualInput="true" defaultLabel="Tapez ou choisissez">
+				        	<f:selectItems value="#{newAssociationView.domainesOptions}" />
+				        </rich:select>
+				        <rich:message for="domaineActivite" ajaxRendered="true" />
+		                
+		                <h:outputText value="Présentation" />
+		                <h:inputTextarea label="Presentation" id="presentation" rows="3" cols="50" required="true" value="#{newAssociationView.a.presentation}"/>
+		                <rich:message for="presentation" ajaxRendered="true" />
+		                
+		                <h:outputText value="Buts" />
+		                <h:inputTextarea label="Buts" id="buts" rows="3" cols="50" required="true" value="#{newAssociationView.a.buts}"/>
+		                <rich:message for="buts" ajaxRendered="true" />
+	                
+	                </h:panelGrid>
+
+	                <a4j:commandButton value="Enregistrer" action="#{newAssociationView.record}" rendered="#{empty newAssociationView.success}">
+	                	<a4j:ajax event="click" execute="@all" render="@form" />
+	                </a4j:commandButton>
+					<rich:messages for="gv" />
+	                <rich:messages globalOnly="true" />
+	                
+	                <h:panelGrid id="out" columns="3" rendered="#{not empty newAssociationView.success}">
+		            	<h:commandLink id="cmdProfileAssociation" action="profileAssociation">
+				            <a4j:param name="nextAssociation" value="#{newAssociationView.a.id}" assignTo="#{associationView.nextAssociation}"/>
+			               	<h:outputText value="Voir l'association"/>
+						</h:commandLink>
+		            </h:panelGrid>
+	                		
+	            </rich:panel>
+	        </rich:graphValidator>
+	        
+	    </h:form>
+		</div>
+    </ui:define>
+</ui:composition>
+</body>
+</html>
