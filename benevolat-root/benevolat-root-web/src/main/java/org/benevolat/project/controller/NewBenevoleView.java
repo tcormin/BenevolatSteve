@@ -26,7 +26,6 @@ public class NewBenevoleView implements Serializable{
 	private Benevole b;
 	private String progressString = "Fill the form please";
 	private String success;
-	private boolean nouveau = true;
 	
 	public NewBenevoleView(){
 		b = new Benevole();
