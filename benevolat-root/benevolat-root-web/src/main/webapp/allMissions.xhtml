@@ -25,7 +25,8 @@
 	                        </f:facet>
 	                        <h:panelGrid columns="1">
 	                            <h:outputText value="#{m.association.nom}" />
-	                            <h:outputText value="#{m.lieu}" />
+	                            <h:outputText value="#{m.date()}" rendered="#{m.ponctuelle}"/>
+	                            <h:outputText value="#{m.lieu}" rendered="#{not m.ponctuelle}"/>
 	                        </h:panelGrid>
 	                    </rich:panel>
 					</a4j:commandLink>

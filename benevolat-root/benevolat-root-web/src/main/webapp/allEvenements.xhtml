@@ -13,7 +13,7 @@
     <h:panelGrid columns="2">
     	<h1>Tous les événements</h1>
 		<h:form>
-			<a4j:commandButton value="Ajouter un événement" action="newEvenement" />
+			<a4j:commandButton value="Ajouter un événement" action="newEvenement" rendered="#{sessionBean.isAdministrateur()}"/>
         </h:form>
 	</h:panelGrid>
     
@@ -30,8 +30,8 @@
 	                            </h:panelGroup>
 	                        </f:facet>
 	                        <h:panelGrid columns="1">
-	                            <h:outputText value="#{e.url}" />
-	                            <h:outputText value="#{e.lieu}" />
+	                            <h:outputText value="#{e.lieu}"/>
+			                    <h:outputText value="#{e.date()}"/>
 	                        </h:panelGrid>
 	                    </rich:panel>
 					</a4j:commandLink>

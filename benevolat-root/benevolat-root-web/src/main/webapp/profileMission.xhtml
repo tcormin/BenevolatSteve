@@ -13,15 +13,18 @@
     	
     	<h1>#{missionView.m.titre}</h1>
         <div style="position:relative; width:70%; height:30%; float:left;">
+        	<h:form>
 			<h:panelGrid columns="2">
 				<h:outputText value="Catégorie :" />
 				<h:outputText value="#{missionView.m.categorie}" />
 				
 				<h:outputText value="Evenement associé :" />
-				<h:outputText value="#{missionView.m.evenement.nom}"/>
+				<h:commandLink id="cmdProfileEvenement" action="profileEvenement" value="#{missionView.m.evenement.nom}">
+                 	<a4j:param name="nextEvenement" value="#{missionView.m.evenement.id}" assignTo="#{evenementView.nextEvenement}"/>
+				</h:commandLink>
 				
 				<h:outputText value="Dates :"/>
-				<h:outputText value=""/>
+				<h:outputText value="#{missionView.m.date()}"/>
 				
 				<h:outputText value="Lieu :" />
 				<h:outputText value="#{missionView.m.lieu}"/>
@@ -30,34 +33,33 @@
 				<h:outputText value="#{missionView.m.nombreBenevoles}"/>
 				
 				<h:outputText value="Association :" />
-				<h:outputText value="#{missionView.m.association.nom}"/>
+				<h:commandLink id="cmdProfileAssociation" action="profileAssociation" value="#{missionView.m.association.nom}">
+                 	<a4j:param name="nextAssociation" value="#{missionView.m.association.id}" assignTo="#{associationView.nextAssociation}"/>
+				</h:commandLink>
 				
 			</h:panelGrid>
+			</h:form>
 		</div>
 		
 		<!-- Boutons -->
 		<div style="position:relative; width:29%; height:30%; float:left;">
 		
 			<h:panelGrid columns="1">
-	
+				
 				<h:form>
-	        		<a4j:commandButton value="Supprimer cette mission" action="#{missionView.delete()}" />
-		        </h:form>
-		        
-				<h:commandButton value="S'inscrire">
-		        	<rich:componentControl target="popup" operation="show" />
-				</h:commandButton>
-				<h:commandButton value="Supprimer">
-		        	<rich:componentControl target="popupDelete" operation="show" />
-				</h:commandButton>
+					<h:commandButton value="S'inscrire à cette mission"  rendered="#{sessionBean.isBenevole()}">
+			        	<rich:componentControl target="popup" operation="show" />
+					</h:commandButton>
+				</h:form>
+				
 				<h:form>
-			    <h:commandLink id="cmdInscriptionsMission" action="inscriptionsMission">
-		            <a4j:param name="nextMission" value="#{missionView.m.id}" assignTo="#{inscriptionsMissionView.nextMission}"/>
-	               	<h:outputText value="Voir les inscriptions"/>
-				</h:commandLink>
-			    </h:form>
+					<h:commandButton value="Supprimer cette mission"  rendered="#{sessionBean.isAdministrateur()}">
+			        	<rich:componentControl target="popupDelete" operation="show" />
+					</h:commandButton>
+				</h:form>
 			</h:panelGrid>
 			
+			<!-- POPUP -->
 		    <rich:popupPanel id="popup" modal="true" resizeable="true" onmaskclick="#{rich:component('popup')}.hide()">
 		        <f:facet name="header">
 		            <h:outputText value="Confirmation d'inscription" />
@@ -66,29 +68,33 @@
 		        </f:facet>
 		        <p>Vous êtes sur le point de vous inscrire à cette mission...</p>
 		        <h:panelGrid columns="3">
-			        <h:outputLink value="#" onclick="#{rich:component('popup')}.hide(); return true;">
-						Valider
-					</h:outputLink>
-					<h:outputText value="" />
+					<h:form>
+		        		<a4j:commandButton value="Confirmer" action="#{missionView.inscrire()}" />
+			        </h:form>
+			        <h:outputText value="     " />
 			        <h:outputLink value="#" onclick="#{rich:component('popup')}.hide(); return false;">
-						Annuler
+						<h:commandButton value="Annuler"/>
 					</h:outputLink>
 				</h:panelGrid>
 		    </rich:popupPanel>
 		    
-    		<rich:popupPanel id="popupDelete" modal="true" resizeable="true" onmaskclick="#{rich:component('popup')}.hide()">
+		    <!-- POPUP DELETE -->
+		    <rich:popupPanel id="popupDelete" modal="true" resizeable="true" onmaskclick="#{rich:component('popupDelete')}.hide()">
 		        <f:facet name="header">
-		            <h:outputText value="Suppression de la mission" />
+		            <h:outputText value="Confirmation d'inscription" />
 		        </f:facet>
 		        <f:facet name="controls">
-		        	<h:outputLink value="#" onclick="#{rich:component('popupDelete')}.hide(); return false;">
-		                X
-		            </h:outputLink>
 		        </f:facet>
-		        <p>Vous êtes sur le point de supprimer définitivement cette mission...</p>
-		        <h:form>
-		        	<h:commandButton style="align:center;" value="Confirmer" action="#{missionView.delete}"/>
-		        </h:form>
+		        <p>Vous êtes sur le point de supprimer cette mission...</p>
+		        <h:panelGrid columns="3">
+					<h:form>
+		        		<a4j:commandButton value="Confirmer" action="#{missionView.delete()}" />
+			        </h:form>
+			        <h:outputText value="     " />
+			        <h:outputLink value="#" onclick="#{rich:component('popupDelete')}.hide(); return false;">
+						<h:commandButton value="Annuler"/>
+					</h:outputLink>
+				</h:panelGrid>
 		    </rich:popupPanel>
 		</div>
 		

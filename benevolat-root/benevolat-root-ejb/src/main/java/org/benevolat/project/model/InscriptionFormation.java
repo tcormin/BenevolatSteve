@@ -1,7 +1,11 @@
 package org.benevolat.project.model;
 import java.util.Date;
 
-
+/**
+ * Inscriptions à une formation DOM
+ * Actuellement en standby
+ * @author tcormin
+ */
 public class InscriptionFormation {
 
 	private Benevole benevole;

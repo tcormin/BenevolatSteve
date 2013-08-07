@@ -11,22 +11,82 @@ import javax.inject.Named;
 import org.benevolat.project.model.Utilisateur;
 import org.benevolat.project.service.UtilisateurService;
 
+/**
+ * CONTROLEUR page de login
+ * 
+ * @author tcormin
+ */
 @RequestScoped
 @Named("loginView")
-public class loginView implements Serializable{
+public class LoginView implements Serializable{
 
+	/**
+	 * serial version UID
+	 */
 	private static final long serialVersionUID = -5189819015740876947L;
 	
+	/**
+	 * Service pour les utilisateurs
+	 */
 	@Inject
 	private UtilisateurService utilisateurService;
+	
+	/**
+	 * session Bean
+	 */
 	@Inject
 	private SessionBean sessionBean;
+	
+	/**
+	 * username entré par l'utilisateur
+	 */
 	private String username;
+	
+	/**
+	 * password entré par l'utilisateur
+	 */
 	private String password;
 	
-	public loginView(){
+	/** Constructeur */
+	public LoginView(){
 	}
 	
+	/**
+	 * 
+	 * @return le username
+	 */
+	public String getUsername() {
+		return username;
+	}
+
+	/**
+	 * 
+	 * @param username
+	 */
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	/**
+	 * 
+	 * @return le password
+	 */
+	public String getPassword() {
+		return password;
+	}
+
+	/**
+	 * 
+	 * @param password
+	 */
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	/**
+	 * Vérifie la paire username/password et récupère l'utilisateur dans la DB
+	 * @return l'action "index"
+	 */
 	public String login() {
 		
 		Utilisateur user = this.utilisateurService.getUserFromId(username, password);
@@ -41,27 +101,15 @@ public class loginView implements Serializable{
 		}
 		return "";
     }
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
 	
-	public void logout(){
+	/**
+	 * Effectue le logout et réinitialise le username/mdp
+	 */
+	public String logout(){
 		this.username = "";
 		this.password = "";
 		this.sessionBean.logout();
+		return "index";
 	}
 	
 

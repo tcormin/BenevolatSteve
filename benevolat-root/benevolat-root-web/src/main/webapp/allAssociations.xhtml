@@ -13,7 +13,7 @@
     <h:panelGrid columns="2">
     	<h1>Toutes les associations</h1>
 		<h:form>
-			<a4j:commandButton value="Ajouter une association" action="newAssociation" />
+			<a4j:commandButton value="Ajouter une association" action="newAssociation" rendered="#{sessionBean.isAssociation()}"/>
         </h:form>
 	</h:panelGrid>
    	<h:form>
@@ -25,12 +25,12 @@
 	                    <rich:panel style="float:left; width:244px; height:80px; padding:5px; margin-right:2px;">
 	                      <f:facet name="header">
 	                            <h:panelGroup>
-	                                <h:outputText value="#{a.nom}" style="font-weight:bold" />
+	                                <h:outputText value="#{a.acronyme}" style="font-weight:bold" />
 	                            </h:panelGroup>
 	                        </f:facet>
-	                        <h:panelGrid columns="2">
-	                            <img src="#{request.contextPath}/images/ags.jpg" align="left" height="30px"/>
-	                            <h:outputText value="#{a.domaineNiveau1}" />
+	                        <h:panelGrid columns="1">
+	                            <h:outputText value="#{a.nom}" />
+			                    <h:outputText value="#{a.domaineNiveau1}" />
 	                        </h:panelGrid>
 	                    </rich:panel>
 					</a4j:commandLink>

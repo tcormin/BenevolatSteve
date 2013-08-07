@@ -21,13 +21,21 @@
 	            </a4j:mediaOutput>
 			<h:panelGrid columns="1">
 				<h:form>
-	        		<a4j:commandButton value="Supprimer cet événement" action="#{evenementView.delete()}" />
+	        		<a4j:commandButton value="Modifier la photo" action="ajouterImage" rendered="#{sessionBean.isAdministrateur()}">
+	        			<a4j:param name="idObjet" value="#{evenementView.e.id}" assignTo="#{ajouterImageView.idObjet}"/>
+	        			<a4j:param name="typeObjet" value="Evenement" assignTo="#{ajouterImageView.typeObjet}"/>
+	        		</a4j:commandButton>
+	        		<a4j:commandButton value="Modifier les informations" action="newEvenement"  rendered="#{sessionBean.isAdministrateur()}">
+	        			<a4j:param name="idEvenement" value="#{evenementView.e.id}" assignTo="#{sessionBean.modify}"/>
+	        		</a4j:commandButton>
+	        		<a4j:commandButton value="Supprimer cet événement" action="#{evenementView.delete()}"  rendered="#{sessionBean.isAdministrateur()}"/>
 		        </h:form>
 			</h:panelGrid>	
 		</div>
 		
 		<!-- Informations -->
         <div style="position:relative; width:69%; height:30%; float:left; text-align: justify;">
+			<h:form>
 			<h:panelGrid columns="2">
 				<h:outputText value="Date :" />
 				<h:outputText value="#{evenementView.e.date()}" />
@@ -35,10 +43,15 @@
 				<h:outputText value="Lieux :" />
 				<h:outputText value="#{evenementView.e.lieu}"/>
 				
+				<h:outputText value="Organisateur :" />
+				<h:commandLink id="cmdProfileAssociation" action="profileAssociation" value="#{evenementView.e.organisateur.nom}">
+                 	<a4j:param name="nextAssociation" value="#{evenementView.e.organisateur.id}" assignTo="#{associationView.nextAssociation}"/>
+				</h:commandLink>
+				
 				<h:outputText value="Site :"/>
 				<h:outputLink value="http://#{evenementView.e.url}"><h:outputText value="#{evenementView.e.url}"/></h:outputLink>
 			</h:panelGrid>
-			
+			</h:form>
 			<h:outputText value="#{evenementView.e.description}"/>
 				
 		</div>
@@ -49,7 +62,7 @@
 			<h:form>
 	        <h:panelGrid columns="1">
 	            <a4j:outputPanel id="panel" layout="block">
-	                <a4j:repeat value="#{allMissionsView.missions}" var="m" rows="6" id="repeat">
+	                <a4j:repeat value="#{evenementView.e.missions}" var="m" rows="6" id="repeat">
 	                    <a4j:commandLink id="cmdMission" action="profileMission">
 	                    	<a4j:param name="nextMission" value="#{m.id}" assignTo="#{missionView.nextMission}"/>
 		                    <rich:panel style="float:left; width:244px; height:80px; padding:5px; margin-right:2px;">

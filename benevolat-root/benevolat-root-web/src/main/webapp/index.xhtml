@@ -9,7 +9,7 @@
     <ui:define name="title"><ui:insert name="Rich faces sample" /></ui:define>
 <!--  border: 1px solid rgb(197,219,249); -->
     <ui:define name="mainContent">
-		
+    
     	<!-- Evenements -->
         <div style="position:relative; width:50%; height:50%; float:left;  margin:0px; padding:0px;">
 			<h:form>
@@ -19,15 +19,15 @@
 		                <a4j:repeat value="#{allEvenementsView.evenements}" var="e" rows="4" id="repeat">
 		                    <a4j:commandLink id="cmdEvenements" action="profileEvenement">
 		                    	<a4j:param name="nextEvenement" value="#{e.id}" assignTo="#{evenementView.nextEvenement}"/>
-			                    <rich:panel style="float:left; width:46%;">
+			                    <rich:panel style="float:left; width:46%; height:80px;">
 			                      <f:facet name="header">
 			                            <h:panelGroup>
 			                                <h:outputText value="#{e.nom}" style="font-weight:bold" />
 			                            </h:panelGroup>
 			                        </f:facet>
-			                        <h:panelGrid columns="2">
-			                        	<img src="#{request.contextPath}/images/escalade.jpg" align="left" height="30px"/>
-			                            <h:outputText value="DateDebut" />
+			                        <h:panelGrid columns="1">
+			                        	<h:outputText value="#{e.lieu}"/>
+			                        	<h:outputText value="#{e.date()}"/>
 			                        </h:panelGrid>
 			                    </rich:panel>
 							</a4j:commandLink>
@@ -40,21 +40,21 @@
 		<!-- Associations -->
 		<div style="position:relative; width:49%; height:50%; float:left;">
 			<h:form>
-			<h:commandLink id="cmdAllAssociation" action="allAssociations"><h1>Associations</h1></h:commandLink>
+				<h:commandLink id="cmdAllAssociation" action="allAssociations"><h1>Associations</h1></h:commandLink>
 		        <h:panelGrid columns="2" style="width:100%;">
 		            <a4j:outputPanel id="panel" layout="block">
-		                <a4j:repeat value="#{allAssociationsView.associations}" var="a" rows="4" id="repeat">
+		                <a4j:repeat value="#{allAssociationsView.associationsRandom}" var="a" rows="4" id="repeat">
 		                    <a4j:commandLink id="cmdAssociation" action="profileAssociation">
 		                    	<a4j:param name="nextAssociation" value="#{a.id}" assignTo="#{associationView.nextAssociation}"/>
-			                    <rich:panel style="float:left; width:46%;">
+			                    <rich:panel style="float:left; width:46%; height:80px;">
 			                      <f:facet name="header">
 			                            <h:panelGroup>
 			                                <h:outputText value="#{a.acronyme}" style="font-weight:bold" />
 			                            </h:panelGroup>
 			                        </f:facet>
-			                        <h:panelGrid columns="2">
-			                        	<img src="#{request.contextPath}/images/ags.jpg" align="left" height="30px"/>
-			                            <h:outputText value="#{a.domaineNiveau1}" />
+			                        <h:panelGrid columns="1">
+			                        	<h:outputText value="#{a.commune}" />
+			                        	<h:outputText value="#{a.domaineNiveau1}" />
 			                        </h:panelGrid>
 			                    </rich:panel>
 							</a4j:commandLink>
@@ -71,9 +71,9 @@
 		        <h:panelGrid columns="2" style="width:100%;">
 		            <a4j:outputPanel id="panel" layout="block">
 		                <a4j:repeat value="#{allMissionsView.missionsPonctuelles}" var="m" rows="4" id="repeat">
-		                    <a4j:commandLink id="cmdMyFormations" action="profileMission">
+		                    <a4j:commandLink id="cmdMyMission" action="profileMission">
 		                    	<a4j:param name="nextMission" value="#{m.id}" assignTo="#{missionView.nextMission}"/>
-			                    <rich:panel style="float:left; width:47%;">
+			                    <rich:panel style="float:left; width:47%; height:80px;">
 			                      <f:facet name="header">
 			                            <h:panelGroup>
 			                                <h:outputText value="#{m.titre}" style="font-weight:bold" />
@@ -81,7 +81,7 @@
 			                        </f:facet>
 			                        <h:panelGrid columns="1">
 			                        	<h:outputText value="#{m.association.acronyme}" />
-			                        	<h:outputText value="Date" />
+			                        	<h:outputText value="#{m.date()}" />
 			                        </h:panelGrid>
 			                    </rich:panel>
 							</a4j:commandLink>
@@ -100,7 +100,7 @@
 		                <a4j:repeat value="#{allMissionsView.missionsRegulieres}" var="m" rows="4" id="repeat">
 		                    <a4j:commandLink id="cmdMyFormations" action="profileMission">
 		                    	<a4j:param name="nextMission" value="#{m.id}" assignTo="#{missionView.nextMission}"/>
-			                    <rich:panel style="float:left; width:47%;">
+			                    <rich:panel style="float:left; width:47%; height:80px;">
 			                      <f:facet name="header">
 			                            <h:panelGroup>
 			                                <h:outputText value="#{m.titre}" style="font-weight:bold" />

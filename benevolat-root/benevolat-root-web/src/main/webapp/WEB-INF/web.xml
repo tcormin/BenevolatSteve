@@ -4,14 +4,26 @@
       xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
       version="3.0"> 
  <display-name>Benevolat</display-name>
+ 
  <context-param>
   <param-name>javax.faces.PROJECT_STAGE</param-name>
   <param-value>Development</param-value>
  </context-param>
+ 
+ <context-param>
+    <param-name>facelets.DEVELOPMENT</param-name>
+    <param-value>true</param-value>
+  </context-param>
+  <context-param>
+    <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+    <param-value>client</param-value>
+  </context-param>
+
  <context-param>
     <param-name>org.richfaces.skin</param-name>
     <param-value>blueSky</param-value>
 </context-param>
+
  <context-param>
   <param-name>javax.faces.SKIP_COMMENTS</param-name>
   <param-value>true</param-value>
@@ -40,10 +52,30 @@
  <welcome-file-list>
   <welcome-file>faces/index.xhtml</welcome-file>
  </welcome-file-list>
- <login-config>
-  <auth-method>BASIC</auth-method>
- </login-config>
+<!--  <login-config> -->
+<!--   <auth-method>BASIC</auth-method> -->
+<!--  </login-config> -->
  
+<login-config>
+    <auth-method>FORM</auth-method>
+    <realm-name>User Auth</realm-name>
+    <form-login-config>
+      <form-login-page>/index.jsp</form-login-page>
+      <form-error-page>/index.jsp</form-error-page>
+    </form-login-config>
+  </login-config>
+  <security-role>
+    <role-name>ASSOCIATION</role-name>
+  </security-role>
+  <security-role>
+    <role-name>BENEVOLE</role-name>
+  </security-role>
+  <security-role>
+    <role-name>ADMINISTRATEUR</role-name>
+  </security-role>
+ <listener>
+    <listener-class>org.benevolat.project.util.SecurityListener</listener-class>
+</listener>
 <!--  <filter> -->
 <!--  	<display-name>Ajax4jsf Filter</display-name> -->
 <!--  	<filter-name>ajax4jsf</filter-name> -->
@@ -58,4 +90,6 @@
 <!--  	</init-param> -->
 <!--  </filter> -->
  
+   
+  
 </web-app>

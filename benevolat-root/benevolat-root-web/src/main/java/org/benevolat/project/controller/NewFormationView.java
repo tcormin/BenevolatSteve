@@ -54,7 +54,6 @@ public class NewFormationView implements Serializable{
 	public void record() {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Successfully changed!", "Successfully changed!"));
         this.success = "success";
-        System.out.println(this.success.isEmpty());
     }
     
 }

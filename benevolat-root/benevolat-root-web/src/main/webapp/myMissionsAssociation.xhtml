@@ -11,14 +11,66 @@
     <ui:define name="mainContent">
 		
 		<h:form>
-		    <h:commandLink style="position: absolute; top: 0 px; left: 650px;" id="cmdNewMission" action="newMission">
-				<h:outputText value="Ajouter une mission"/>
-		    </h:commandLink>
+		    <a4j:commandButton value="Ajouter une mission" style="position: absolute; top: 0 px; left: 650px;" id="cmdNewMission" action="newMission">
+		    </a4j:commandButton>
 		</h:form>
+		
 		<h1>Mes missions</h1>
 
 	   		<rich:accordion switchType="client">
 	   		
+	   			<rich:accordionItem header="Incomplètes">
+					<div style="position:relative; width:100%; height:100%; float:left;">
+						<h:form>
+				   		<rich:extendedDataTable value="#{myMissionsView.missionsIncompletes}"
+	                                var="m" id="tableI" frozenColumns="6" noDataLabel="Aucune mission incomplète"
+	                                style="height:100%; width:100%;" selectionMode="none">         
+				            
+				            <rich:column  width="160px">
+				                <f:facet name="header">
+				                    <h:outputText value="Titre"/>
+				                </f:facet>
+				                <h:commandLink id="cmdProfileMission" action="profileMission">
+						            <a4j:param name="nextMission" value="#{m.id}" assignTo="#{missionView.nextMission}"/>
+				                	<h:outputText value="#{m.titre}"/>
+				                </h:commandLink>
+				            </rich:column>
+				            
+				            <rich:column width="160px">
+				                <f:facet name="header">
+				                    <h:outputText value="Date(s)"/>
+				                </f:facet>
+				                <h:outputText value="#{m.date()}"/>
+				            </rich:column>
+				            
+				            <rich:column width="80px">
+				                <f:facet name="header">
+				                    <h:outputText value="Type"/>
+				                </f:facet>
+				                <h:outputText value="#{m.typeMission()}"/>
+				            </rich:column>
+				            
+					       <rich:column width="140px">
+				                <f:facet name="header">
+				                    <h:outputText value="Inscriptions"/>
+				                </f:facet>
+				                <h:outputText value="#{m.placesRestantes} place-s restante-s sur #{m.nombreBenevoles}"/>
+				            </rich:column>
+				            
+							<rich:column width="200px">
+				                <f:facet name="header">
+				                	<h:outputText value="Voir les inscrits"/>
+				                </f:facet>
+				                <h:commandLink id="cmdInscriptionsMission" action="inscrits" value="Voir les inscriptions">
+						            <a4j:param name="nextInscriptionMission" value="#{m.id}" assignTo="#{inscritsView.nextMission}"/>
+				                </h:commandLink>
+				            </rich:column>
+				            
+		       			</rich:extendedDataTable>
+		       			</h:form>
+			   		</div>
+			   	</rich:accordionItem>
+			   	
 			   	<rich:accordionItem header="Complètes">
 			   		<div style="position:relative; width:100%; height:100%; float:left;">
 			   			<h:form>
@@ -61,64 +113,14 @@
 				                <f:facet name="header">
 				                    <h:outputText value="Voir les inscrits"/>
 				                </f:facet>
-				                <h:commandLink id="cmdInscriptionsMission" action="inscriptionsMission">
-						            <a4j:param name="nextMission" value="#{m.id}" assignTo="#{inscriptionsMissionView.nextMission}"/>
-					               	<h:outputText value="Voir les inscriptions"/>
-								</h:commandLink>
+				                <h:commandLink id="cmdInscriptionsMission" action="inscrits">
+						            <a4j:param name="nextInscriptionMission" value="#{m.id}" assignTo="#{inscritsView.nextMission}"/>
+				                	<h:outputText value="Voir les inscriptions"/>
+				                </h:commandLink>
 				            </rich:column>
                                 
 			   			</rich:extendedDataTable>
 			   			</h:form>
-			   		</div>
-			   	</rich:accordionItem>
-			   	
-			   	<rich:accordionItem header="Incomplètes">
-					<div style="position:relative; width:100%; height:100%; float:left;">
-						<h:form>
-				   		<rich:extendedDataTable value="#{myMissionsView.missionsIncompletes}"
-	                                var="m" id="tableI" frozenColumns="6" noDataLabel="Aucune mission incomplète"
-	                                style="height:100%; width:100%;" selectionMode="none">         
-				            
-				            <rich:column  width="160px">
-				                <f:facet name="header">
-				                    <h:outputText value="Titre"/>
-				                </f:facet>
-				                <h:commandLink id="cmdProfileMission" action="profileMission">
-						            <a4j:param name="nextMission" value="#{m.id}" assignTo="#{missionView.nextMission}"/>
-				                	<h:outputText value="#{m.titre}"/>
-				                </h:commandLink>
-				            </rich:column>
-				            
-				            <rich:column width="160px">
-				                <f:facet name="header">
-				                    <h:outputText value="Date(s)"/>
-				                </f:facet>
-				                <h:outputText value="#{m.date()}"/>
-				            </rich:column>
-				            
-				            <rich:column width="80px">
-				                <f:facet name="header">
-				                    <h:outputText value="Type"/>
-				                </f:facet>
-				                <h:outputText value="#{m.typeMission()}"/>
-				            </rich:column>
-				            
-					       <rich:column width="140px">
-				                <f:facet name="header">
-				                    <h:outputText value="Nombre d'inscrits"/>
-				                </f:facet>
-				                <h:outputText value=""/>
-				            </rich:column>
-				            
-							<rich:column width="200px">
-				                <f:facet name="header">
-				                	<h:outputText value="Voir les inscrits"/>
-				                </f:facet>
-				                <h:outputText value="Voir les inscrits"/>
-				            </rich:column>
-				            
-		       			</rich:extendedDataTable>
-		       			</h:form>
 			   		</div>
 			   	</rich:accordionItem>
 			   	
@@ -157,7 +159,10 @@
 				                <f:facet name="header">
 				                    <h:outputText value="Confirmer les bénévoles présents"/>
 				                </f:facet>
-				                <h:outputText value="Confirmer les bénévoles présents"/>
+				                <h:commandLink id="cmdInscriptionsMission" action="inscrits">
+						            <a4j:param name="nextInscriptionMission" value="#{m.id}" assignTo="#{inscritsView.nextMission}"/>
+				                	<h:outputText value="Confirmer les présences"/>
+				                </h:commandLink>
 				            </rich:column>
                                 
 			   			</rich:extendedDataTable>
@@ -196,6 +201,15 @@
 				                <h:outputText value="#{m.typeMission()}"/>
 				            </rich:column>
                                 
+                            <rich:column width="250px">
+				                <f:facet name="header">
+				                    <h:outputText value="Voir les bénévoles"/>
+				                </f:facet>
+				                <h:commandLink id="cmdInscriptionsMission" action="inscrits">
+						            <a4j:param name="nextInscriptionMission" value="#{m.id}" assignTo="#{inscritsView.nextMission}"/>
+				                	<h:outputText value="Voir les inscrits"/>
+				                </h:commandLink>
+				            </rich:column>
 			   			</rich:extendedDataTable>
 			   			</h:form>
 			   		</div>

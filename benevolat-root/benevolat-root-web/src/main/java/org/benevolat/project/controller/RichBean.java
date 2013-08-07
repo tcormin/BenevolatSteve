@@ -13,7 +13,6 @@ public class RichBean implements Serializable {
     private String name;
 
     public RichBean() {
-        System.out.println("post construct: initialize");
         name = "Johny Hallyday";
     }
 

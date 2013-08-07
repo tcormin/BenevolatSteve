@@ -1,15 +1,22 @@
 package org.benevolat.project.controller;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.benevolat.project.model.Association;
 import org.benevolat.project.model.Benevole;
+import org.benevolat.project.model.Domaine;
+import org.benevolat.project.model.Image;
 import org.benevolat.project.service.BenevoleService;
+import org.benevolat.project.service.ImageService;
 
 @RequestScoped
 @Named("newBenevoleView")
@@ -23,18 +30,39 @@ public class NewBenevoleView implements Serializable{
 	@Inject
 	private BenevoleService benevoleService;
 	
+	@Inject
+	private ImageService imageService;
+	
+	@Inject
+	private SessionBean sessionBean;
+	
 	private Benevole b;
 	private String progressString = "Fill the form please";
 	private String success;
-	private boolean nouveau = true;
 	
 	public NewBenevoleView(){
-		b = new Benevole();
 	}
 	
+    @PostConstruct
+    public void init() {
+		if(sessionBean.getModify() == 0){
+			this.b = new Benevole();
+		}else{
+			this.b = benevoleService.getFromId(Benevole.class, sessionBean.getModify().toString());
+		}
+		
+    }
+    
 	public void record() {
 		
-		this.benevoleService.save(b);
+		if(sessionBean.getModify() == 0){
+			this.b.setImage(this.imageService.getFromId(Image.class, "2"));
+			this.benevoleService.save(b);
+		}else{
+			benevoleService.update(b);
+		}
+		
+		
 		//int i = this.sessionBean.getNextFreeId();
 		this.success = "ok";
 

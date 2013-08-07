@@ -13,7 +13,7 @@
         <div style="position:relative; width:100%; height:100%; float:left;">
 		<h:form>
 	        <rich:graphValidator value="#{newEvenementView}" id="gv">
-	            <rich:panel header="Nouvel événement" style="width:95%">
+	            <rich:panel header="Nouvel événement" style="width:95%" rendered="#{empty newEvenementView.success}">
 
 	                <h:panelGrid columns="3">
 	                
@@ -46,17 +46,17 @@
 		                </h:inputText>
 		                <rich:message for="site" ajaxRendered="true" />
 		                
+		                <h:outputText value="Organisateur" />
+		                <rich:select value="#{newEvenementView.organisateur}" required="false" id="organisateur" enableManualInput="true" defaultLabel="#{newEvenementView.defaultLabelOptions}">
+				        	<f:selectItems value="#{newEvenementView.associationsOptions}" />
+				        </rich:select>
+				        <rich:message for="organisateur" ajaxRendered="true" />
+				        
 		                <h:outputText value="Description" />
 		                <h:inputTextarea label="Description" id="description" rows="3" cols="50" required="true" value="#{newEvenementView.e.description}">
 		                </h:inputTextarea>
 		                <rich:message for="description" ajaxRendered="true" />
 		                
-		                <h:outputText value="Photo" />
-		                <rich:fileUpload fileUploadListener="#{newEvenementView.listener}" id="upload" acceptedTypes="jpg, jpeg, gif, png, bmp" style="height:100px;"
-			                ontyperejected="alert('Only JPG, JPEG, GIF, PNG and BMP files are accepted');" maxFilesQuantity="1">
-			                <a4j:ajax event="uploadcomplete" execute="@none" render="info" />
-			            </rich:fileUpload>
-            
 	                </h:panelGrid>
 
 	                <a4j:commandButton value="Enregistrer" action="#{newEvenementView.record}" rendered="#{empty newEvenementView.success}">
@@ -65,15 +65,14 @@
 					<rich:messages for="gv" />
 	                <rich:messages globalOnly="true" />
 	                
-	                <h:panelGrid id="out" columns="3" rendered="#{not empty newEvenementView.success}">
-		            	<h:commandLink id="cmdProfileEvenement" action="profileEvenement">
-				            <a4j:param name="nextEvenement" value="#{newEvenementView.e.id}" assignTo="#{evenementView.nextEvenement}"/>
-			               	<h:outputText value="Voir l'événement"/>
-						</h:commandLink>
-		            </h:panelGrid>
-	                		
 	            </rich:panel>
                 
+                <h:panelGrid id="out" columns="3" rendered="#{not empty newEvenementView.success}">
+	            	<h:commandLink id="cmdProfileEvenement" action="profileEvenement"  value="Voir l'événement">
+			            <a4j:param name="nextEvenement" value="newEvenementView.e.id" assignTo="#{evenementView.nextEvenement}"/>
+					</h:commandLink>
+	            </h:panelGrid>
+		            
 	        </rich:graphValidator>
 	        
 	    </h:form>

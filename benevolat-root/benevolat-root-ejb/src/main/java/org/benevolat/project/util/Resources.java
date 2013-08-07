@@ -22,7 +22,6 @@ import javax.persistence.PersistenceContext;
 public class Resources {
    private static final String UNUSED = "unused";
 // use @SuppressWarnings to tell IDE to ignore warnings about field not being referenced directly
-   @SuppressWarnings(UNUSED)
    @Produces
    @PersistenceContext
    private EntityManager em;

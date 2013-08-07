@@ -17,45 +17,44 @@
 
 	                <h:panelGrid columns="3">
 	                    <h:outputText value="Titre:" />
-		                <h:inputText label="Titre" id="titre" required="true" width="200" value="#{newMissionView.titre}"/>
+		                <h:inputText label="Titre" id="titre" required="true" width="200" value="#{newMissionView.m.titre}"/>
 		                <rich:message for="titre" ajaxRendered="true" />
 		                
 		                <h:outputText value="Description:" />
-		                <h:inputTextarea label="Description" id="description" rows="3" cols="50" required="true" value="#{newMissionView.description}"/>
+		                <h:inputTextarea label="Description" id="description" rows="3" cols="50" required="true" value="#{newMissionView.m.description}"/>
 		                <rich:message for="description" ajaxRendered="true" />
 		                
 		                <h:outputText value="Lieu:" />
-		                <h:inputText label="Lieu" id="lieu" required="true" width="200" value="#{newMissionView.lieu}"/>
+		                <h:inputText label="Lieu" id="lieu" required="true" width="200" value="#{newMissionView.m.lieu}"/>
 		                <rich:message for="lieu" ajaxRendered="true" />
 		                
 		                <h:outputText value="Date de début:" />
-		                <rich:calendar value="#{newMissionView.dateDebut}" id="dateDebut" locale="FR"
+		                <rich:calendar value="#{newMissionView.m.dateDebut}" id="dateDebut" locale="FR"
 		                	popup="true" datePattern="d MMM yyy" todayControlMode="hidden" validatorMessage="Entrer une date."
 		                	showApplyButton="false" width="200" cellWidth="24px" cellHeight="22px" style="width:200px">
 		                </rich:calendar>
 		                <rich:message for="dateDebut" ajaxRendered="true" />
 		                
-		                
 		                <h:outputText value="Date de fin:" />
-		                <rich:calendar value="#{newMissionView.dateFin}" id="dateFin" locale="FR"
+		                <rich:calendar value="#{newMissionView.m.dateFin}" id="dateFin" locale="FR"
 		                	popup="true" datePattern="d MMM yyy" todayControlMode="hidden"
 		                	showApplyButton="false" width="200" cellWidth="24px" cellHeight="22px" style="width:200px">
 		                </rich:calendar>
 		                <rich:message for="dateFin" ajaxRendered="true" />
 		                
 						<h:outputText value="Nombre de bénévoles recherchés: " />
-		                <h:inputNumberSpinner label="NombreBenevoles" id="nombreBenevoles" required="true" width="200" value="#{newMissionView.nombreBenevoles}"/>
+		                <h:inputText label="NombreBenevoles" id="nombreBenevoles" required="true" width="200" value="#{newMissionView.m.nombreBenevoles}"/>
 		                <rich:message for="nombreBenevoles" ajaxRendered="true" />
 		                
 		                <h:outputText value="Délai d'inscription:" />
-		                <rich:calendar value="#{newMissionView.delaiInscription}" id="delaiInscription" locale="FR"
+		                <rich:calendar value="#{newMissionView.m.delaiInscription}" id="delaiInscription" locale="FR"
 		                	popup="true" datePattern="d MMM yyy" todayControlMode="hidden"
 		                	showApplyButton="false" width="200" cellWidth="24px" cellHeight="22px" style="width:200px">
 		                </rich:calendar>
 		                <rich:message for="delaiInscription" ajaxRendered="true" />
 		                
 		                <h:outputText value="Domaine d'activité:" />
-		                <rich:select enableManualInput="true" defaultLabel="Tapez ou choisissez">
+		                <rich:select value="#{newMissionView.m.categorie}" enableManualInput="true" defaultLabel="Tapez ou choisissez">
 				        	<f:selectItems value="#{newMissionView.domainesOptions}" />
 				        </rich:select>
 				        <rich:message for="domaineActivite" ajaxRendered="true" />
@@ -65,6 +64,13 @@
 							<f:selectItem id="item1" itemLabel="Ponctuelle" itemValue="P" />
 				        	<f:selectItem id="item2" itemLabel="Régulière" itemValue="R" />
 				    	</h:selectOneRadio>
+				    	<rich:message for="subscriptions" ajaxRendered="true" />
+				    	
+				    	<h:outputText value="Evenement associé" />
+		                <rich:select value="#{newMissionView.evenement}" id="evenement" enableManualInput="true" required="false" defaultLabel="Tapez ou choisissez">
+				        	<f:selectItems value="#{newMissionView.evenementsOptions}" />
+				        </rich:select>
+				        <rich:message for="evenement" ajaxRendered="true" />
 		                
 	                </h:panelGrid>
 
@@ -76,7 +82,7 @@
 	                
 	                <h:panelGrid id="out" columns="3" rendered="#{not empty newMissionView.success}">
 		            	<h:commandLink id="cmdProfileMission" action="profileMission">
-				            <a4j:param name="nextMission" value="#{newMissionView.id}" assignTo="#{missionView.nextMission}"/>
+				            <a4j:param name="nextMission" value="#{newMissionView.m.id}" assignTo="#{missionView.nextMission}"/>
 			               	<h:outputText value="Voir la mission"/>
 						</h:commandLink>
 		            </h:panelGrid>

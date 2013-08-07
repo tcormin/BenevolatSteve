@@ -18,7 +18,8 @@
 				<h:outputText value="#{associationView.a.dateCreation}" />
 				
 				<h:outputText value="Email :" />
-				<h:outputText value="#{associationView.a.email}"/>
+				<h:outputLink value="mailto:#{associationView.a.email}"><h:outputText value="#{associationView.a.email}"/></h:outputLink>
+				
 				
 				<h:outputText value="Site :"/>
 				<h:outputLink target="_blank" value="http://#{associationView.a.url}"><h:outputText value="#{associationView.a.url}"/></h:outputLink>
@@ -39,11 +40,19 @@
 		
 		<!-- Boutons + photo -->
 		<div style="position:relative; width:19%; height:32%; float:left;">
-			<img src="#{request.contextPath}/images/ags.jpg" align="right" height="100px"/>
+						<a4j:mediaOutput element="img" mimeType="image/jpeg" createContent="#{associationView.paint}"
+	                value="#{row}" style="height:100px;" cacheable="false"/>
 			<!-- Boutons -->
 			<h:panelGrid columns="1">
 				<h:form>
-	        		<a4j:commandButton value="Supprimer cette association" action="#{associationView.delete()}" />
+					<a4j:commandButton value="Modifier ma photo" action="ajouterImage.jsf" rendered="#{associationView.isMyProfile()}">
+	        			<a4j:param name="idObjet" value="#{associationView.a.id}" assignTo="#{ajouterImageView.idObjet}"/>
+	        			<a4j:param name="typeObjet" value="Association" assignTo="#{ajouterImageView.typeObjet}"/>
+	        		</a4j:commandButton>
+	        		<a4j:commandButton value="Modifier mes informations" action="newAssociation" rendered="#{associationView.isMyProfile()}">
+	        			<a4j:param name="idAssociation" value="#{associationView.a.id}" assignTo="#{sessionBean.modify}"/>
+	        		</a4j:commandButton>
+	        		<a4j:commandButton value="Supprimer cette association" action="#{associationView.delete()}"  rendered="#{sessionBean.isAdministrateur()}" />
 		        </h:form>
 			</h:panelGrid>
 		</div>
@@ -55,7 +64,7 @@
 		</div>
 		
 		<!-- Buts -->
-		<div style="position:relative; width:100%; height:15%; float:left;">
+		<div style="position:relative; width:100%; height:12%; float:left;">
 			<h2>Buts</h2>
 			<h:outputText value="#{associationView.a.buts}"/>
 		</div>
@@ -64,29 +73,32 @@
 		<div style="position:relative; width:100%; height:30%; float:left;">
 			<h2>Missions proposées</h2>
 			<h:form>
-		    <h:panelGrid columns="4" style="width:100%;">
+		    <h:panelGrid columns="1">
 	            <a4j:outputPanel id="panel" layout="block">
-	                <a4j:repeat value="#{associationView.a.missions}" var="m" rows="4" id="repeat">
-	                    <a4j:commandLink id="cmdMyFormations" action="profileMission">
+	                <a4j:repeat value="#{associationView.missions}" var="m" rows="6" id="repeat">
+	                    <a4j:commandLink id="cmdMission" action="profileMission">
 	                    	<a4j:param name="nextMission" value="#{m.id}" assignTo="#{missionView.nextMission}"/>
-		                    <rich:panel style="float:left; width:24%;">
+		                    <rich:panel style="float:left; width:244px; height:80px; padding:5px; margin-right:2px;">
 		                      <f:facet name="header">
 		                            <h:panelGroup>
 		                                <h:outputText value="#{m.titre}" style="font-weight:bold" />
 		                            </h:panelGroup>
 		                        </f:facet>
-		                        <h:panelGrid columns="1">
-		                        	<h:panelGroup>
-			                            <img src="#{request.contextPath}/images/ags.jpg" align="left" height="16px"/>
-			                            <h:outputText value="Date" />
-		                            </h:panelGroup>
-		                            <h:outputText value="#{m.lieu}" />
+		                        <h:panelGrid columns="2">
+		                            <img src="#{request.contextPath}/images/ags.jpg" align="left" height="16px"/>
+			                        <h:outputText value="#{m.date()}" />
 		                        </h:panelGrid>
+		                        <h:outputText value="#{m.lieu}" />
 		                    </rich:panel>
 						</a4j:commandLink>
 	                </a4j:repeat>
 	            </a4j:outputPanel>
-	        </h:panelGrid>
+	        </h:panelGrid> 
+	         <div style="text-align:center;">
+				<a4j:outputPanel layout="inline">
+				<rich:dataScroller for="repeat" render="panel" />
+			</a4j:outputPanel>
+			</div>
 		    </h:form>
 		</div>
     </ui:define>

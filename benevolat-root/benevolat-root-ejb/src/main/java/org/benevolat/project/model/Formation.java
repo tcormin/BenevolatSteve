@@ -2,7 +2,12 @@ package org.benevolat.project.model;
 import java.util.ArrayList;
 import java.util.Date;
 
-
+/**
+ * Formation DOM
+ * 
+ * actuellement en standby
+ * @author tcormin
+ */
 public class Formation {
 	
 	private String titre;

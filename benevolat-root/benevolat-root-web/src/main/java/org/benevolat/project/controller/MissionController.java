@@ -41,13 +41,11 @@ public class MissionController implements Serializable{
 	}
 	
 	public List<Mission> getMissions() throws Exception {
-		List<Mission> m =  missionService.getMissions();
-		return m;
+		return missionService.getMissions();
 	}
 	
 	public Mission getOneMission() throws Exception {	
-		Mission m = missionService.getMissions().get(0);
-		return m;
+		return missionService.getMissions().get(0);
 	}
 	
 }

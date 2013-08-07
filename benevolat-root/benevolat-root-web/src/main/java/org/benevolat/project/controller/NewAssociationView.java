@@ -14,7 +14,9 @@ import javax.inject.Named;
 
 import org.benevolat.project.model.Association;
 import org.benevolat.project.model.Domaine;
+import org.benevolat.project.model.Image;
 import org.benevolat.project.service.AssociationService;
+import org.benevolat.project.service.ImageService;
 
 @RequestScoped
 @Named("newAssociationView")
@@ -28,17 +30,28 @@ public class NewAssociationView implements Serializable{
 	@Inject
 	private AssociationService associationService;
 	
+	@Inject
+	private ImageService imageService;
+	
+	@Inject
+	private SessionBean sessionBean;
+	
 	private String progressString = "Fill the form please";
 	private String success;
-	Association a;
+	private Association a;
 	private List<SelectItem> domainesOptions = null;
 	
 	public NewAssociationView(){
-		this.a = new Association();
 	}
 	
     @PostConstruct
     public void init() {
+		if(sessionBean.getModify() == 0){
+			this.a = new Association();
+		}else{
+			this.a = associationService.getFromId(Association.class, sessionBean.getModify().toString());
+		}
+		
     	domainesOptions = new ArrayList<SelectItem>();
     	for (Domaine domaine : Domaine.values()) {
         	domainesOptions.add(new SelectItem(domaine.toString(),domaine.toString()));
@@ -47,7 +60,13 @@ public class NewAssociationView implements Serializable{
 
 	public void record() {
 		
-		associationService.save(a);
+		if(sessionBean.getModify() == 0){
+			this.a.setImage(this.imageService.getFromId(Image.class, "3"));
+			associationService.save(a);
+		}else{
+			associationService.update(a);
+		}
+		
 		//int i = this.sessionBean.getNextFreeId();
 		this.success = "ok";
 

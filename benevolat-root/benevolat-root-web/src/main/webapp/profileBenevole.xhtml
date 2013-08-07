@@ -18,7 +18,7 @@
 				<h:outputText value="#{benevoleView.b.date}" />
 				
 				<h:outputText value="Profession :" />
-				<h:inputText value="#{benevoleView.b.profession}"/>
+				<h:outputText value="#{benevoleView.b.profession}"/>
 				
 				<h:outputText value="Email :" />
 				<h:outputLink value="mailto:#{benevoleView.b.email}"><h:outputText value="#{benevoleView.b.email}"/></h:outputLink>
@@ -40,17 +40,21 @@
 		
 		<!-- Boutons + photo -->
 		<div style="position:relative; width:19%; height:32%; float:left;">
-			<img src="#{request.contextPath}/images/profil.jpg" align="right" height="120px"/>
+			<a4j:mediaOutput element="img" mimeType="image/jpeg" createContent="#{benevoleView.paint}"
+	                value="#{row}" style="height:120px;" cacheable="false"/>
 			<!-- Boutons -->
 			<h:panelGrid columns="1">
-				
-					<h:commandButton value="Mettre à jour" action="#{benevoleView.update()}"/>
-					<h:commandLink id="cmdAttestations" action="allAttestations">
-							<a4j:param name="nextBenevole" value="#{benevoleView.b.id}" assignTo="#{allAttestationsView.idBenevole}"/>
-							<h:outputText value="Missions effectuées"/>
+					<a4j:commandButton value="Modifier ma photo" action="ajouterImage.jsf" rendered="#{benevoleView.isMyProfile()}">
+	        			<a4j:param name="idObjet" value="#{benevoleView.b.id}" assignTo="#{ajouterImageView.idObjet}"/>
+	        			<a4j:param name="typeObjet" value="Benevole" assignTo="#{ajouterImageView.typeObjet}"/>
+	        		</a4j:commandButton>
+					<a4j:commandButton value="Modifier mes informations" action="newBenevole" rendered="#{benevoleView.isMyProfile()}">
+	        			<a4j:param name="idBenevole" value="#{benevoleView.b.id}" assignTo="#{sessionBean.modify}"/>
+	        		</a4j:commandButton>
+					<h:commandLink id="cmdAttestations" value="Missions effectuées" action="myMissionsBenevole" rendered="#{not benevoleView.isMyProfile()}">
+						<a4j:param name="idBenevoleMissions" value="#{benevoleView.b.id}" assignTo="#{myMissionsView.nextBenevole}"/>
 					</h:commandLink>
-					<a4j:commandButton value="Supprimer ce bénévole" action="#{benevoleView.delete()}" />
-		        
+					<a4j:commandButton value="Supprimer ce bénévole" action="#{benevoleView.delete()}" rendered="#{sessionBean.isAdministrateur()}" />
 			</h:panelGrid>
 			
 		</div>

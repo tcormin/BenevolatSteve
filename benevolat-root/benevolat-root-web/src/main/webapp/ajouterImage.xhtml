@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a4j="http://richfaces.org/a4j" xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:rich="http://richfaces.org/rich" xmlns:p="http://primefaces.org/rich">
+<body>
+<ui:composition template="WEB-INF/templates/template.xhtml">
+    
+    <ui:define name="title"><ui:insert name="Rich faces sample" /></ui:define>
+
+    <ui:define name="mainContent">
+    	<h1>Ajouter une image</h1>
+        
+	    <h:form>
+	        <h:panelGrid columns="2" columnClasses="top,top" rendered="#{not ajouterImageView.downloaded}">
+	            <rich:fileUpload fileUploadListener="#{ajouterImageView.listener}" id="upload" acceptedTypes="jpg, jpeg, gif, png, bmp"
+	                ontyperejected="alert('Only JPG, JPEG, GIF, PNG and BMP files are accepted');" maxFilesQuantity="1">
+	                <a4j:ajax event="uploadcomplete" execute="@none" render="@all"/>
+	            </rich:fileUpload>
+	        </h:panelGrid>
+	        <h:panelGroup id="info" layout="block" rendered="#{ajouterImageView.downloaded}">
+	        	<h:panelGrid columns="2">
+	        		<h:outputText value="L'image a bien été changée."/>
+              		<a4j:commandLink value="Retourner au profil." action="#{ajouterImageView.profil()}"/>
+              </h:panelGrid>
+          	</h:panelGroup>
+	    </h:form>
+        
+        
+    </ui:define>
+</ui:composition>
+</body>
+</html>

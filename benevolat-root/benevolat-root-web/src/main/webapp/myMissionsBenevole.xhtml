@@ -10,7 +10,8 @@
 
     <ui:define name="mainContent">
 		
-		<h1>Mes missions</h1>
+		<h:panelGrid rendered="#{sessionBean.isBenevole()}"><h1>Mes missions</h1></h:panelGrid>
+		<h:panelGrid rendered="#{sessionBean.isAssociation()}"><h1>Les missions de #{myMissionsView.b.prenom} #{myMissionsView.b.nom}</h1></h:panelGrid>
 
 	   		<rich:accordion switchType="client">
 	   		
@@ -38,7 +39,7 @@
 				                <h:outputText value="#{i.mission.date()}"/>
 				            </rich:column>
 				            
-				            <rich:column width="80px">
+				            <rich:column width="70px">
 				                <f:facet name="header">
 				                    <h:outputText value="Type"/>
 				                </f:facet>
@@ -51,7 +52,7 @@
 				                </f:facet>
 				                <h:commandLink id="cmdProfileAssociation" action="profileAssociation">
 						            <a4j:param name="nextAssociation" value="#{i.mission.association.id}" assignTo="#{associationView.nextAssociation}"/>
-				                	<h:outputText value="#{i.mission.association.acronym}"/>
+				                	<h:outputText value="#{i.mission.association.acronyme}"/>
 				                </h:commandLink>
 				            </rich:column>
 				            
@@ -67,11 +68,11 @@
 			   		</div>
 			   	</rich:accordionItem>
 			   	
-				<rich:accordionItem header="Demandes en attente">
+				<rich:accordionItem header="Demandes en attente" rendered="#{not sessionBean.isAssociation()}">
 					<div style="position:relative; width:100%; height:100%; float:left;">
 						<h:form>
 				   		<rich:extendedDataTable value="#{myMissionsView.missionsEnCours}"
-	                                var="i" id="tableEC" frozenColumns="6" noDataLabel="Aucune demande en cours"
+	                                var="i" id="tableEC" frozenColumns="5" noDataLabel="Aucune demande en cours"
 	                                style="height:100%; width:100%;" selectionMode="none">         
 				            
 				            <rich:column width="160px">
@@ -91,7 +92,7 @@
 				                <h:outputText value="#{i.mission.date()}"/>
 				            </rich:column>
 				            
-				            <rich:column width="80px">
+				            <rich:column width="70px">
 				                <f:facet name="header">
 				                    <h:outputText value="Type"/>
 				                </f:facet>
@@ -104,18 +105,11 @@
 				                </f:facet>
 				                <h:commandLink id="cmdProfileAssociation" action="profileAssociation">
 						            <a4j:param name="nextAssociation" value="#{i.mission.association.id}" assignTo="#{associationView.nextAssociation}"/>
-				                	<h:outputText value="#{i.mission.association.acronym}"/>
+				                	<h:outputText value="#{i.mission.association.acronyme}"/>
 				                </h:commandLink>
 				            </rich:column>
 				            
-							<rich:column width="100px">
-				                <f:facet name="header">
-				                    <h:outputText value="Lieu"/>
-				                </f:facet>
-				                <h:outputText value="#{i.mission.lieu}"/>
-				            </rich:column>
-				            
-				            <rich:column width="100px">
+				            <rich:column width="200px">
 				                <f:facet name="header">
 				                    <h:outputText value="Délai d'inscription"/>
 				                </f:facet>
@@ -127,9 +121,7 @@
 			   		</div>
 			   	</rich:accordionItem>
 	        
-		        
-			   	
-			   	<rich:accordionItem header="Inscriptions refusées">
+			   	<rich:accordionItem header="Inscriptions refusées" rendered="#{not sessionBean.isAssociation()}">
 			   		<div style="position:relative; width:100%; height:100%; float:left;">
 			   			<h:form>
 						<rich:extendedDataTable value="#{myMissionsView.missionsRefusees}"
@@ -153,7 +145,7 @@
 				                <h:outputText value="#{i.mission.date()}"/>
 				            </rich:column>
 				            
-				            <rich:column width="80px">
+				            <rich:column width="70px">
 				                <f:facet name="header">
 				                    <h:outputText value="Type"/>
 				                </f:facet>
@@ -186,57 +178,7 @@
                                 var="i" id="tableAttestation" frozenColumns="5" noDataLabel="Aucune attestation"
                                 style="height:100%; width:100%;" selectionMode="none">
                                 
-                        	<rich:column width="160px">
-				                <f:facet name="header">
-				                    <h:outputText value="Titre"/>
-				                </f:facet>
-				                <h:commandLink id="cmdMyMissions" target="blank_" action="attestation">
-						            <a4j:param name="nextInscriptionMission" value="#{i.id}" assignTo="#{attestationView.nextInscriptionMission}"/>
-				                	<h:outputText value="#{i.mission.titre}"/>
-				                </h:commandLink>
-				            </rich:column>
-				            
-				            <rich:column width="160px">
-				                <f:facet name="header">
-				                    <h:outputText value="Date(s)"/>
-				                </f:facet>
-				                <h:outputText value="#{i.mission.date()}"/>
-				            </rich:column>
-				            
-				            <rich:column width="80px">
-				                <f:facet name="header">
-				                    <h:outputText value="Type"/>
-				                </f:facet>
-				                <h:outputText value="#{i.mission.typeMission()}"/>
-				            </rich:column>
-				            
-					       <rich:column width="160px">
-				                <f:facet name="header">
-				                    <h:outputText value="Association"/>
-				                </f:facet>
-				                <h:outputText value="#{i.mission.association.nom}"/>
-				            </rich:column>
-				            
-							<rich:column width="200px">
-				                <f:facet name="header">
-				                    <h:outputText value=" "/>
-				                </f:facet>
-				                <h:outputText value="Demander une référence"/>
-				            </rich:column>
-                                
-			   			</rich:extendedDataTable>
-			   			</h:form>
-			   		</div>
-		        </rich:accordionItem>
-		        
-		        <rich:accordionItem header="Références">
-			   		<div style="position:relative; width:100%; height:100%; float:left;">
-			   			<h:form>
-						<rich:extendedDataTable value="#{myMissionsView.missionsRefusees}"
-                                var="i" id="tableReferences" frozenColumns="4" noDataLabel="Aucune référence"
-                                style="height:100%; width:100%;" selectionMode="none">
-                                
-                        	<rich:column width="160px">
+                            <rich:column width="160px">
 				                <f:facet name="header">
 				                    <h:outputText value="Titre"/>
 				                </f:facet>
@@ -246,14 +188,14 @@
 				                </h:commandLink>
 				            </rich:column>
 				            
-				            <rich:column width="160px">
+                        	<rich:column width="160px">
 				                <f:facet name="header">
 				                    <h:outputText value="Date(s)"/>
 				                </f:facet>
 				                <h:outputText value="#{i.mission.date()}"/>
 				            </rich:column>
 				            
-				            <rich:column width="80px">
+				            <rich:column width="70px">
 				                <f:facet name="header">
 				                    <h:outputText value="Type"/>
 				                </f:facet>
@@ -266,13 +208,23 @@
 				                </f:facet>
 				                <h:outputText value="#{i.mission.association.nom}"/>
 				            </rich:column>
+				            
+				            <rich:column width="200px">
+				                <f:facet name="header">
+				                    <h:outputText value="Voir l'attestation"/>
+				                </f:facet>
+				                <h:commandLink id="cmdAttestation" target="blank_" action="attestation">
+						            <a4j:param name="nextInscriptionMission" value="#{i.id}" assignTo="#{attestationView.nextInscriptionMission}"/>
+				                	<h:outputText value="Voir l'attestation"/>
+				                </h:commandLink>
+				            </rich:column>
                                 
 			   			</rich:extendedDataTable>
 			   			</h:form>
 			   		</div>
 		        </rich:accordionItem>
-
-	        </rich:accordion>
+		        
+		</rich:accordion>
     </ui:define>
     
 </ui:composition>

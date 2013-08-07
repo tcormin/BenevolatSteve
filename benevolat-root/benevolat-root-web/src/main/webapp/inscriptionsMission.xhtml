@@ -12,10 +12,11 @@
 		
 		<h1>Inscriptions pour la mission : #{inscriptionsMissionView.mission.titre}</h1>
 
-	   	<h:form>
+	   	
 		   	<rich:accordion switchType="client">
 				<rich:accordionItem header="Demandes en attente (encore #{inscriptionsMissionView.mission.placesRestantes} place-s)">
 	   				<div style="position:relative; width:100%; height:100%; float:left;">
+				   		<h:form>
 				   		<rich:extendedDataTable value="#{inscriptionsMissionView.inscriptionsEnCours}"
 	                                var="i" id="tableEC" frozenColumns="5"
 	                                style="height:100%; width:60%;" selectionMode="none">         
@@ -24,9 +25,8 @@
 				                <f:facet name="header">
 				                    <h:outputText value="Bénévole"/>
 				                </f:facet>
-				                 <h:commandLink id="cmdNextBenevole" action="profileBenevole">
-						            <a4j:param name="nextBenevole" value="#{i.benevole.id}" assignTo="#{benevoleView.nextBenevole}"/>
-				                	<h:outputText value="#{i.benevole.nom} #{i.benevole.prenom}"/>
+				                 <h:commandLink id="cmdNextBenevole" action="index">
+						            <h:outputText value="#{i.benevole.nom} #{i.benevole.prenom}"/>
 				                </h:commandLink>
 				            </rich:column>
 				            
@@ -50,6 +50,7 @@
 				            </rich:column>
 				            
 		       			</rich:extendedDataTable>
+		       			</h:form>
 			   		</div>
 			   	</rich:accordionItem>
 			   	<rich:popupPanel id="popup" modal="false" autosized="true" resizeable="false">
@@ -80,6 +81,7 @@
 							    
 			   	<rich:accordionItem header="Demandes acceptées">
 	   				<div style="position:relative; width:100%; height:100%; float:left;">
+	   				<h:form>
 				   		<rich:extendedDataTable value="#{inscriptionsMissionView.inscriptionsAcceptees}"
 	                                var="i" id="tableAcc" frozenColumns="5"
 	                                style="height:100%; width:60%;" selectionMode="none">         
@@ -109,11 +111,13 @@
 				            </rich:column>
 				            
 		       			</rich:extendedDataTable>
+		       			</h:form>
 			   		</div>
 			   	</rich:accordionItem>
 			   	
 			   	<rich:accordionItem header="Demandes refusées">
 	   				<div style="position:relative; width:100%; height:100%; float:left;">
+				   		<h:form>
 				   		<rich:extendedDataTable value="#{inscriptionsMissionView.inscriptionsRefusees}"
 	                                var="i" id="tableRef" frozenColumns="5"
 	                                style="height:100%; width:60%;" selectionMode="none">         
@@ -143,10 +147,10 @@
 				            </rich:column>
 				            
 		       			</rich:extendedDataTable>
+		       			</h:form>
 			   		</div>
 			   	</rich:accordionItem>
 			</rich:accordion>
-		</h:form>
     </ui:define>
     
 </ui:composition>
