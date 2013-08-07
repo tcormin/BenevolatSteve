@@ -52,8 +52,12 @@ public class Association extends Utilisateur{
 	/** Domaine d'activité de l'association */
 	private Domaine domaineNiveau1;
 	
+<<<<<<< HEAD
 	/** Missions créées par l'association */
 	@OneToMany(mappedBy="association", cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
+=======
+	@OneToMany(mappedBy="association", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+>>>>>>> 014a35e93a94e6ef8b908689f9e45c5c29b6055d
 	private Collection<Mission> missions;
 	
 	/** image illustrant l'événement */

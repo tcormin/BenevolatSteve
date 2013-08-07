@@ -3,13 +3,18 @@ package org.benevolat.project.controller;
 import java.io.OutputStream;
 import java.io.Serializable;
 
+<<<<<<< HEAD
 import javax.enterprise.context.SessionScoped;
+=======
+import javax.enterprise.context.RequestScoped;
+>>>>>>> 014a35e93a94e6ef8b908689f9e45c5c29b6055d
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.benevolat.project.model.Benevole;
 import org.benevolat.project.service.BenevoleService;
 
+<<<<<<< HEAD
 /**
  * CONTROLEUR profileBenevole
  * 
@@ -17,6 +22,9 @@ import org.benevolat.project.service.BenevoleService;
  */
 
 @SessionScoped
+=======
+@RequestScoped
+>>>>>>> 014a35e93a94e6ef8b908689f9e45c5c29b6055d
 @Named("benevoleView")
 public class BenevoleView implements Serializable{
 

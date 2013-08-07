@@ -17,7 +17,10 @@ import org.richfaces.model.UploadedFile;
  * @author Ilya Shaikovsky, tcormin
  */
 @RequestScoped
+<<<<<<< HEAD
 @Named("imageUpload")
+=======
+>>>>>>> 014a35e93a94e6ef8b908689f9e45c5c29b6055d
 public class ImageUploadView implements Serializable {
     
 	/**

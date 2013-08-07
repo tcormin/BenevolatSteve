@@ -13,11 +13,14 @@ import org.benevolat.project.service.BenevoleService;
 import org.benevolat.project.service.InscriptionMissionService;
 import org.benevolat.project.service.MissionService;
 
+<<<<<<< HEAD
 /**
  * CONTROLEUR profile mission
  * 
  * @author tcormin
  */
+=======
+>>>>>>> 014a35e93a94e6ef8b908689f9e45c5c29b6055d
 @RequestScoped
 @Named("missionView")
 public class MissionView implements Serializable{

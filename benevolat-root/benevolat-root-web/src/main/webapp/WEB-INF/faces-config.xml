@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- This file is not required if you don't need any extra configuration. -->
 <faces-config version="2.0" xmlns="http://java.sun.com/xml/ns/javaee"
-   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xsi:schemaLocation="
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
         http://java.sun.com/xml/ns/javaee
         http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
 
-   <!-- This descriptor activates the JSF 2.0 Servlet -->
+	<!-- This descriptor activates the JSF 2.0 Servlet -->
 
+<<<<<<< HEAD
    <!-- Write your navigation rules here. You are encouraged to use CDI for 
       creating @Named managed beans. -->
       
@@ -162,6 +163,17 @@
 		<navigation-case>		
 			<from-outcome>login</from-outcome>
 			<to-view-id>/faces/login.xhtml</to-view-id>
+=======
+	<!-- Write your navigation rules here. You are encouraged to use CDI for 
+		creating @Named managed beans. -->
+ 
+	<navigation-rule>
+		<display-name>index</display-name>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>indexPage</from-outcome>	
+			<to-view-id>index.xhtml</to-view-id>
+>>>>>>> 014a35e93a94e6ef8b908689f9e45c5c29b6055d
 			<redirect />
 		</navigation-case>
 		<navigation-case>		
@@ -170,5 +182,132 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
+ 
+<!-- 	<navigation-rule> -->
+<!-- 		<from-view-id>*</from-view-id> -->
+<!-- 		<navigation-case> -->
+<!-- 			<from-outcome>profileEvenement</from-outcome> -->
+<!-- 			<to-view-id>/faces/profileEvenement.xhtml</to-view-id> -->
+<!-- 		</navigation-case> -->
+
+		<!-- <navigation-case> -->
+		<!-- <from-outcome>profileBenevole</from-outcome> -->
+		<!-- <to-view-id>/faces/profileBenevole.xhtml</to-view-id> -->
+		<!-- </navigation-case> -->
+		<!-- <navigation-case> -->
+		<!-- <from-outcome>profileMission</from-outcome> -->
+		<!-- <to-view-id>/faces/profileMission.xhtml</to-view-id> -->
+		<!-- </navigation-case> -->
+
+		<!-- <navigation-case> -->
+		<!-- <from-outcome>profileAssociation</from-outcome> -->
+		<!-- <to-view-id>/faces/profileAssociation.xhtml</to-view-id> -->
+		<!-- </navigation-case> -->
+		<!-- <navigation-case> -->
+		<!-- <from-outcome>profileFormation</from-outcome> -->
+		<!-- <to-view-id>/faces/profileAssociation.xhtml</to-view-id> -->
+		<!-- </navigation-case> -->
+		<!-- <navigation-case> -->
+		<!-- <from-outcome>myProfile</from-outcome> -->
+		<!-- <to-view-id>/faces/profileBenevole.xhtml</to-view-id> -->
+		<!-- </navigation-case> -->
+		<!-- <navigation-case> -->
+		<!-- <from-outcome>myMissionsBenevole</from-outcome> -->
+		<!-- <to-view-id>/faces/myMissionsBenevole.xhtml</to-view-id> -->
+		<!-- </navigation-case> -->
+		<!-- <navigation-case> -->
+		<!-- <from-outcome>myMissionsAssociation</from-outcome> -->
+		<!-- <to-view-id>/faces/myMissionsAssociation.xhtml</to-view-id> -->
+		<!-- </navigation-case> -->
+		<!-- <navigation-case> -->
+		<!-- <from-outcome>myFormations</from-outcome> -->
+		<!-- <to-view-id>/faces/profileMission.xhtml</to-view-id> -->
+		<!-- </navigation-case> -->
+		<!-- <navigation-case> -->
+		<!-- <from-outcome>allMissions</from-outcome> -->
+		<!-- <to-view-id>/faces/allMissions.xhtml</to-view-id> -->
+		<!-- <redirect /> -->
+		<!-- </navigation-case> -->
+		<!-- <navigation-case> -->
+		<!-- <from-outcome>allEvenements</from-outcome> -->
+		<!-- <to-view-id>/faces/allEvenements.xhtml</to-view-id> -->
+		<!-- <redirect /> -->
+		<!-- </navigation-case> -->
+		<!-- <navigation-case> -->
+		<!-- <from-outcome>allBenevoles</from-outcome> -->
+		<!-- <to-view-id>/faces/allBenevoles.xhtml</to-view-id> -->
+		<!-- <redirect /> -->
+		<!-- </navigation-case> -->
+		<!-- <navigation-case> -->
+		<!-- <from-outcome>allAssociations</from-outcome> -->
+		<!-- <to-view-id>/faces/allAssociations.xhtml</to-view-id> -->
+		<!-- <redirect /> -->
+		<!-- </navigation-case> -->
+		<!-- <navigation-case> -->
+		<!-- <from-outcome>allFormations</from-outcome> -->
+		<!-- <to-view-id>/faces/allEvenements.xhtml</to-view-id> -->
+		<!-- <redirect /> -->
+		<!-- </navigation-case> -->
+		<!-- <navigation-case> -->
+		<!-- <from-outcome>newMission</from-outcome> -->
+		<!-- <to-view-id>/faces/newMission.xhtml</to-view-id> -->
+		<!-- <redirect /> -->
+		<!-- </navigation-case> -->
+		<!-- <navigation-case> -->
+		<!-- <from-outcome>searchView</from-outcome> -->
+		<!-- <to-view-id>/faces/searchView.xhtml</to-view-id> -->
+		<!-- <redirect /> -->
+		<!-- </navigation-case> -->
+		<!-- <navigation-case> -->
+		<!-- <from-outcome>newFormation</from-outcome> -->
+		<!-- <to-view-id>/faces/newFormation.xhtml</to-view-id> -->
+		<!-- <redirect /> -->
+		<!-- </navigation-case> -->
+		<!-- <navigation-case> -->
+		<!-- <from-outcome>upload</from-outcome> -->
+		<!-- <to-view-id>/faces/upload.xhtml</to-view-id> -->
+		<!-- <redirect /> -->
+		<!-- </navigation-case> -->
+		<!-- <navigation-case> -->
+		<!-- <from-outcome>allAttestations</from-outcome> -->
+		<!-- <to-view-id>/faces/allAttestations.xhtml</to-view-id> -->
+		<!-- <redirect /> -->
+		<!-- </navigation-case> -->
+		<!-- <navigation-case> -->
+		<!-- <from-outcome>attestation</from-outcome> -->
+		<!-- <to-view-id>/faces/attestation.xhtml</to-view-id> -->
+		<!-- <redirect /> -->
+		<!-- </navigation-case> -->
+		<!-- <navigation-case> -->
+		<!-- <from-outcome>inscriptionsMission</from-outcome> -->
+		<!-- <to-view-id>/faces/inscriptionsMission.xhtml</to-view-id> -->
+		<!-- <redirect /> -->
+		<!-- </navigation-case> -->
+		<!-- <navigation-case> -->
+		<!-- <from-outcome>newAssociation</from-outcome> -->
+		<!-- <to-view-id>/faces/newAssociation.xhtml</to-view-id> -->
+		<!-- <redirect /> -->
+		<!-- </navigation-case> -->
+		<!-- <navigation-case> -->
+		<!-- <from-outcome>newBenevole</from-outcome> -->
+		<!-- <to-view-id>/faces/newBenevole.xhtml</to-view-id> -->
+		<!-- <redirect /> -->
+		<!-- </navigation-case> -->
+		<!-- <navigation-case> -->
+		<!-- <from-outcome>suppression</from-outcome> -->
+		<!-- <to-view-id>/faces/suppression.xhtml</to-view-id> -->
+		<!-- <redirect /> -->
+		<!-- </navigation-case> -->
+		<!-- <navigation-case> -->
+		<!-- <from-outcome>newEvenement</from-outcome> -->
+		<!-- <to-view-id>/faces/newEvenement.xhtml</to-view-id> -->
+		<!-- <redirect /> -->
+		<!-- </navigation-case> -->
+		<!-- <navigation-case> -->
+		<!-- <from-outcome>login</from-outcome> -->
+		<!-- <to-view-id>/faces/login.xhtml</to-view-id> -->
+		<!-- <redirect /> -->
+		<!-- </navigation-case> -->
+<!-- 	</navigation-rule> -->
 
 </faces-config>

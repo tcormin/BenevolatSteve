@@ -14,13 +14,9 @@
 		
     	<!-- Boutons + photo -->
 		<div style="position:relative; width:30%; height:32%; float:left;">
-<!-- 			<img src="#{request.contextPath}/images/escalade.jpg" height="130px"/> -->
-				<a4j:mediaOutput element="img" mimeType="image/jpeg" createContent="#{evenementView.paint}"
-	                value="#{row}" style="height:100px;" cacheable="false">
-<!-- 	                <f:param value="#{imageUploadView.timeStamp}" name="time" /> -->
-	            </a4j:mediaOutput>
 			<h:panelGrid columns="1">
 				<h:form>
+<<<<<<< HEAD
 	        		<a4j:commandButton value="Modifier la photo" action="ajouterImage" rendered="#{sessionBean.isAdministrateur()}">
 	        			<a4j:param name="idObjet" value="#{evenementView.e.id}" assignTo="#{ajouterImageView.idObjet}"/>
 	        			<a4j:param name="typeObjet" value="Evenement" assignTo="#{ajouterImageView.typeObjet}"/>
@@ -29,6 +25,9 @@
 	        			<a4j:param name="idEvenement" value="#{evenementView.e.id}" assignTo="#{sessionBean.modify}"/>
 	        		</a4j:commandButton>
 	        		<a4j:commandButton value="Supprimer cet événement" action="#{evenementView.delete()}"  rendered="#{sessionBean.isAdministrateur()}"/>
+=======
+	        		<a4j:commandButton value="Supprimer cet événement" action="#{evenementView.delete()}"   />
+>>>>>>> 014a35e93a94e6ef8b908689f9e45c5c29b6055d
 		        </h:form>
 			</h:panelGrid>	
 		</div>

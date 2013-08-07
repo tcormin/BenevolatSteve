@@ -3,7 +3,11 @@ package org.benevolat.project.controller;
 import java.io.OutputStream;
 import java.io.Serializable;
 
+<<<<<<< HEAD
 import javax.enterprise.context.SessionScoped;
+=======
+import javax.enterprise.context.RequestScoped;
+>>>>>>> 014a35e93a94e6ef8b908689f9e45c5c29b6055d
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -11,12 +15,16 @@ import org.benevolat.project.model.Evenement;
 import org.benevolat.project.service.EvenementService;
 import org.benevolat.project.service.ImageService;
 
+<<<<<<< HEAD
 /**
  * CONTROLEUR profileEvenement
  * 
  * @author tcormin
  */
 @SessionScoped
+=======
+@RequestScoped
+>>>>>>> 014a35e93a94e6ef8b908689f9e45c5c29b6055d
 @Named("evenementView")
 public class EvenementView implements Serializable{
 
@@ -66,12 +74,18 @@ public class EvenementView implements Serializable{
 	public void test(){
 		String s = evenementService.getFromId(Evenement.class, "1").getNom();
 	}
+<<<<<<< HEAD
 
 	/**
 	 * Supprime le'événement affiché de la DB
 	 * @return l'action allEvenements
 	 */
 	public String delete(String id){
+=======
+	
+	public String delete(String id){
+		System.out.println("Suppression de l'evenement "+ this.e.getid().toString());
+>>>>>>> 014a35e93a94e6ef8b908689f9e45c5c29b6055d
 		evenementService.removeFromId(Evenement.class, this.e.getid().toString());
 		return "allEvenements";
 	}

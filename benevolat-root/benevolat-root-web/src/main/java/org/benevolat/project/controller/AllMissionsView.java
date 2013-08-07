@@ -24,9 +24,12 @@ public class AllMissionsView implements Serializable{
 	 */
 	private static final long serialVersionUID = -3297688869116450946L;
 
+<<<<<<< HEAD
 	/**
 	 * Service pour les missions
 	 */
+=======
+>>>>>>> 014a35e93a94e6ef8b908689f9e45c5c29b6055d
 	@Inject
 	MissionService missionService;
 	

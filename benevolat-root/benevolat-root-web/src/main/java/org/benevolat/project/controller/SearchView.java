@@ -63,6 +63,49 @@ public class SearchView implements Serializable {
 		this.setAssociationsEmpty(true);
 		return null;
 	}
+<<<<<<< HEAD
+=======
+
+	public String launchSearch(){
+		
+//		Iterator<Mission> itr = this.getMp().iterator();
+//		Mission m;
+//		
+//		while(itr.hasNext()){
+//			m = itr.next();
+//			if(m.getTitre().contains(this.searchText)){
+//				this.mp.add(m);
+//			}
+//			if(m.getDescription().contains(this.searchText)){
+//				this.mp.add(m);
+//			}
+//		}
+//	
+//		itr = this.sessionBean.getgMissions().getDaoMission().getMissionsRegulieres().iterator();
+//		
+//		while(itr.hasNext()){
+//			m = itr.next();
+//			if(m.getTitre().contains(this.searchText)){
+//				this.mr.add(m);
+//			}
+//			if(m.getDescription().contains(this.searchText)){
+//				this.mr.add(m);
+//			}
+//		}
+//		
+//		Iterator<Association> itrA = this.sessionBean.getgUtilisateurs().getDaoAssociation().getAssociations().iterator();
+//		Association ass;
+//		while(itrA.hasNext()){
+//			ass = itrA.next();
+//			if(ass.getNom().contains(this.searchText)){
+//				this.a.add(ass);
+//			}
+//			if(ass.getPresentation().contains(this.searchText)){
+//				this.a.add(ass);
+//			}
+//		}
+		return "search";
+>>>>>>> 014a35e93a94e6ef8b908689f9e45c5c29b6055d
 	
 	public List<Mission> getMissionsPonctuelles(){
 		if(searchText.length() > 0){

@@ -2,20 +2,28 @@ package org.benevolat.project.controller;
 
 import java.io.Serializable;
 
+<<<<<<< HEAD
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+=======
+import javax.enterprise.context.RequestScoped;
+>>>>>>> 014a35e93a94e6ef8b908689f9e45c5c29b6055d
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.benevolat.project.model.Administrateur;
 import org.benevolat.project.model.Association;
 import org.benevolat.project.model.Benevole;
 import org.benevolat.project.model.Utilisateur;
+<<<<<<< HEAD
 import org.benevolat.project.service.InitialisationService;
 import org.benevolat.project.service.MissionService;
 import org.richfaces.application.push.Session;
 
 @SessionScoped
+=======
+
+@RequestScoped
+>>>>>>> 014a35e93a94e6ef8b908689f9e45c5c29b6055d
 @Named("sessionBean")
 public class SessionBean implements Serializable {
 
@@ -23,16 +31,20 @@ public class SessionBean implements Serializable {
 
 	private String searchText = "";
 
+<<<<<<< HEAD
 	@Inject
 	private BenevoleView benevoleView;
 
 	@Inject
 	private AssociationView associationView;
 
+=======
+>>>>>>> 014a35e93a94e6ef8b908689f9e45c5c29b6055d
 	@Inject
 	private MyMissionsView myMissionsView;
 	
 	@Inject
+<<<<<<< HEAD
 	private InitialisationService initialisationService;
 
 	@Inject
@@ -71,6 +83,17 @@ public class SessionBean implements Serializable {
 
 	}
 
+=======
+	AssociationView associationView;
+
+	Utilisateur user;
+	boolean log = false;
+
+	public String getTitre() {
+		return "Plateforme du Bénévolat";
+	}
+
+>>>>>>> 014a35e93a94e6ef8b908689f9e45c5c29b6055d
 	public String getSearchText() {
 		return searchText;
 	}
@@ -85,6 +108,10 @@ public class SessionBean implements Serializable {
 
 	public void setUser(Utilisateur user) {
 		this.user = user;
+<<<<<<< HEAD
+=======
+		System.out.println("J'ai trouvé un(e) : " + user.getClass());
+>>>>>>> 014a35e93a94e6ef8b908689f9e45c5c29b6055d
 		this.setLog(true);
 
 		if (this.isAssociation()) {
@@ -100,6 +127,7 @@ public class SessionBean implements Serializable {
 		this.log = log;
 	}
 
+<<<<<<< HEAD
 	public Long getModify() {
 		return modify;
 	}
@@ -129,6 +157,8 @@ public class SessionBean implements Serializable {
 		return this.user.getClass() == Benevole.class;
 	}
 
+=======
+>>>>>>> 014a35e93a94e6ef8b908689f9e45c5c29b6055d
 	public String logout() {
 		this.user = null;
 		this.log = false;
@@ -149,6 +179,7 @@ public class SessionBean implements Serializable {
 	}
 
 	public String myMissions() {
+<<<<<<< HEAD
 		if (user.getClass() == Benevole.class) {
 			myMissionsView.setNextBenevole(Long.toString(this.user.getid()));
 			return "myMissionsBenevole";
@@ -163,5 +194,16 @@ public class SessionBean implements Serializable {
 	public String action() {
 		System.out.println("Remplir ici l'action souhaitée");
 		return "allAssociations";
+=======
+		// if (user.getClass() == Benevole.class){
+		// benevoleView.setNextBenevole(Long.toString(this.user.getid()));
+		// return "myMissionsBenevole";
+		// }
+		// if (this.user.getClass() == Association.class){
+		// associationView.setNextAssociation(Long.toString(this.user.getid()));
+		// return "myMissionsAssociation";
+		// }
+		return "myMissionsAssociation"; // index
+>>>>>>> 014a35e93a94e6ef8b908689f9e45c5c29b6055d
 	}
 }

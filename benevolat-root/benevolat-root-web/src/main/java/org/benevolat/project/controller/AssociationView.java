@@ -4,7 +4,11 @@ import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.Collection;
 
+<<<<<<< HEAD
 import javax.enterprise.context.SessionScoped;
+=======
+import javax.enterprise.context.RequestScoped;
+>>>>>>> 014a35e93a94e6ef8b908689f9e45c5c29b6055d
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -13,12 +17,16 @@ import org.benevolat.project.model.Mission;
 import org.benevolat.project.service.AssociationService;
 import org.benevolat.project.service.MissionService;
 
+<<<<<<< HEAD
 /**
  * CONTROLEUR profileAssociation
  * 
  * @author tcormin
  */
 @SessionScoped
+=======
+@RequestScoped
+>>>>>>> 014a35e93a94e6ef8b908689f9e45c5c29b6055d
 @Named("associationView")
 public class AssociationView implements Serializable{
 

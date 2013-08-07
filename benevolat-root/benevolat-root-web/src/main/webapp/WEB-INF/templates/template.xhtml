@@ -32,6 +32,7 @@
 		</div>
     	
 		 <div id="toolbarArea">
+<<<<<<< HEAD
 		 	<h:form id="formToolbar">
 				<rich:toolbar height="35" itemSeparator="grid">
 			        <rich:toolbarGroup>
@@ -57,6 +58,21 @@
 			            	<h:graphicImage value="/images/icones/search.png" styleClass="pic" alt="home" width="20px" />
 	            	</h:commandLink>
 	        	</rich:toolbarGroup>
+=======
+		 	<h:form id="formToolbar"  >
+				<rich:toolbar height="35" itemSeparator="grid">
+			        <rich:toolbarGroup>
+			            <h:commandButton  id="cmdHome" value="indexPage" action="indexPage" redirect="true"/>
+
+			        </rich:toolbarGroup>
+			        <rich:toolbarGroup location="right">
+	            		<h:inputText styleClass="barsearch" value="#{searchView.searchText}"/>
+							<h:commandLink id="cmSearchView" action="${searchView.launchSearch}">
+								<h:graphicImage value="/images/icones/search.png"
+									styleClass="pic" alt="home" width="20px" />
+							</h:commandLink>
+						</rich:toolbarGroup>
+>>>>>>> 014a35e93a94e6ef8b908689f9e45c5c29b6055d
     		</rich:toolbar>
 		    </h:form>
 		</div>
@@ -77,7 +93,11 @@
                 			groupCollapsedLeftIcon="triangleDown" topGroupExpandedRightIcon="chevronUp"
                 			topGroupCollapsedRightIcon="chevronDown" itemLeftIcon="disc"
    							>
+<<<<<<< HEAD
 	       				<rich:panelMenuGroup label="Outils administrateur" rendered="#{sessionBean.isAdministrateur()}">
+=======
+	       				<rich:panelMenuGroup label="Demo">
+>>>>>>> 014a35e93a94e6ef8b908689f9e45c5c29b6055d
 								<rich:panelMenuItem name="allMissions"><h:commandLink id="cmdAllMission" value="Toutes les missions" action="allMissions.xhtml" redirect="true"/></rich:panelMenuItem>
 								<rich:panelMenuItem name="allBenevoles"><h:commandLink id="cmdAllBenevoles" value="Tous les bénévoles" action="allBenevoles"/></rich:panelMenuItem>
 								<rich:panelMenuItem name="allAssociations"><h:commandLink id="cmdAllAssociations" value="Toutes les associations" action="allAssociations"/></rich:panelMenuItem>
