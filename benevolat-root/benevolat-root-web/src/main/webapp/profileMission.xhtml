@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a4j="http://richfaces.org/a4j" xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:rich="http://richfaces.org/rich" xmlns:p="http://primefaces.org/rich">
+
+<body>
+<ui:composition template="WEB-INF/templates/template.xhtml">
+
+    <ui:define name="title"><ui:insert name="Rich faces sample" /></ui:define>
+
+    <ui:define name="mainContent">
+    	<!-- Informations -->
+    	
+    	<h1>#{missionView.m.titre}</h1>
+        <div style="position:relative; width:70%; height:30%; float:left;">
+        	<h:form>
+			<h:panelGrid columns="2">
+				<h:outputText value="Catégorie :" />
+				<h:outputText value="#{missionView.m.categorie}" />
+				
+				<h:outputText value="Evenement associé :" />
+				<h:commandLink id="cmdProfileEvenement" action="profileEvenement" value="#{missionView.m.evenement.nom}">
+                 	<a4j:param name="nextEvenement" value="#{missionView.m.evenement.id}" assignTo="#{evenementView.nextEvenement}"/>
+				</h:commandLink>
+				
+				<h:outputText value="Dates :"/>
+				<h:outputText value="#{missionView.m.date()}"/>
+				
+				<h:outputText value="Lieu :" />
+				<h:outputText value="#{missionView.m.lieu}"/>
+				
+				<h:outputText value="Nombre de places :" />
+				<h:outputText value="#{missionView.m.nombreBenevoles}"/>
+				
+				<h:outputText value="Association :" />
+				<h:commandLink id="cmdProfileAssociation" action="profileAssociation" value="#{missionView.m.association.nom}">
+                 	<a4j:param name="nextAssociation" value="#{missionView.m.association.id}" assignTo="#{associationView.nextAssociation}"/>
+				</h:commandLink>
+				
+			</h:panelGrid>
+			</h:form>
+		</div>
+		
+		<!-- Boutons -->
+		<div style="position:relative; width:29%; height:30%; float:left;">
+		
+			<h:panelGrid columns="1">
+				
+				<h:form>
+					<h:commandButton value="S'inscrire à cette mission"  rendered="#{sessionBean.isBenevole()}">
+			        	<rich:componentControl target="popup" operation="show" />
+					</h:commandButton>
+				</h:form>
+				
+				<h:form>
+					<h:commandButton value="Supprimer cette mission"  rendered="#{sessionBean.isAdministrateur()}">
+			        	<rich:componentControl target="popupDelete" operation="show" />
+					</h:commandButton>
+				</h:form>
+			</h:panelGrid>
+			
+			<!-- POPUP -->
+		    <rich:popupPanel id="popup" modal="true" resizeable="true" onmaskclick="#{rich:component('popup')}.hide()">
+		        <f:facet name="header">
+		            <h:outputText value="Confirmation d'inscription" />
+		        </f:facet>
+		        <f:facet name="controls">
+		        </f:facet>
+		        <p>Vous êtes sur le point de vous inscrire à cette mission...</p>
+		        <h:panelGrid columns="3">
+					<h:form>
+		        		<a4j:commandButton value="Confirmer" action="#{missionView.inscrire()}" />
+			        </h:form>
+			        <h:outputText value="     " />
+			        <h:outputLink value="#" onclick="#{rich:component('popup')}.hide(); return false;">
+						<h:commandButton value="Annuler"/>
+					</h:outputLink>
+				</h:panelGrid>
+		    </rich:popupPanel>
+		    
+		    <!-- POPUP DELETE -->
+		    <rich:popupPanel id="popupDelete" modal="true" resizeable="true" onmaskclick="#{rich:component('popupDelete')}.hide()">
+		        <f:facet name="header">
+		            <h:outputText value="Confirmation d'inscription" />
+		        </f:facet>
+		        <f:facet name="controls">
+		        </f:facet>
+		        <p>Vous êtes sur le point de supprimer cette mission...</p>
+		        <h:panelGrid columns="3">
+					<h:form>
+		        		<a4j:commandButton value="Confirmer" action="#{missionView.delete()}" />
+			        </h:form>
+			        <h:outputText value="     " />
+			        <h:outputLink value="#" onclick="#{rich:component('popupDelete')}.hide(); return false;">
+						<h:commandButton value="Annuler"/>
+					</h:outputLink>
+				</h:panelGrid>
+		    </rich:popupPanel>
+		</div>
+		
+		<!-- Votre mission -->
+		<div style="position:relative; width:100%; height:30%; float:left;">
+			<h2>Votre mission</h2>
+			<h:outputText value="#{missionView.m.description}"/>
+		</div>
+		
+		<!-- Association -->
+		<div style="position:relative; width:100%; height:25%; float:left;">
+			<h2>L'association</h2>
+			<h:outputText value="#{missionView.m.association.presentation}"/>
+		</div>
+		
+
+    </ui:define>
+    
+</ui:composition>
+</body>
+</html>
