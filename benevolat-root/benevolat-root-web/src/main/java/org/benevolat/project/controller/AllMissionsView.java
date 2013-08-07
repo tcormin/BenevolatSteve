@@ -19,7 +19,6 @@ public class AllMissionsView implements Serializable{
 	 */
 	private static final long serialVersionUID = -3297688869116450946L;
 
-	//@ManagedProperty(value = "sessionBean")
 	@Inject
 	MissionService missionService;
 	

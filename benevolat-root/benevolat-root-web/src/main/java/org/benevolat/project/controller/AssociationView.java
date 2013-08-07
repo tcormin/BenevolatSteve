@@ -2,15 +2,14 @@ package org.benevolat.project.controller;
 
 import java.io.Serializable;
 
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.inject.Singleton;
 
 import org.benevolat.project.model.Association;
 import org.benevolat.project.service.AssociationService;
 
-@Singleton
-//@RequestScoped
+@RequestScoped
 @Named("associationView")
 public class AssociationView implements Serializable{
 

@@ -3,16 +3,15 @@ package org.benevolat.project.controller;
 import java.io.OutputStream;
 import java.io.Serializable;
 
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.inject.Singleton;
 
 import org.benevolat.project.model.Evenement;
 import org.benevolat.project.service.EvenementService;
 import org.benevolat.project.service.ImageService;
 
-@Singleton
-//@RequestScoped
+@RequestScoped
 @Named("evenementView")
 public class EvenementView implements Serializable{
 
@@ -43,7 +42,7 @@ public class EvenementView implements Serializable{
 		System.out.println(s);
 	}
 	
-	public String delete(){
+	public String delete(String id){
 		System.out.println("Suppression de l'evenement "+ this.e.getid().toString());
 		evenementService.removeFromId(Evenement.class, this.e.getid().toString());
 		return "allEvenements";

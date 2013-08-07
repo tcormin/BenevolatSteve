@@ -2,15 +2,14 @@ package org.benevolat.project.controller;
 
 import java.io.Serializable;
 
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.inject.Singleton;
 
 import org.benevolat.project.model.Mission;
 import org.benevolat.project.service.MissionService;
 
-@Singleton
-//@RequestScoped
+@RequestScoped
 @Named("missionView")
 public class MissionView implements Serializable{
 

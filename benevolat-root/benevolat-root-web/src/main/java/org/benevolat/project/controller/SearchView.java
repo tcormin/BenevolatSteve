@@ -54,7 +54,7 @@ public class SearchView implements Serializable {
 		return this.evenementService.search(this.searchText);
 	}
 
-	public void launchSearch(){
+	public String launchSearch(){
 		
 //		Iterator<Mission> itr = this.getMp().iterator();
 //		Mission m;
@@ -92,6 +92,7 @@ public class SearchView implements Serializable {
 //				this.a.add(ass);
 //			}
 //		}
+		return "search";
 	
 	}
 	

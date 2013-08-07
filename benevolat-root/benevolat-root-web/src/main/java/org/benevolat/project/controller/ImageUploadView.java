@@ -4,8 +4,7 @@ import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
 import org.benevolat.project.model.Image;
@@ -16,8 +15,7 @@ import org.richfaces.model.UploadedFile;
 /**
  * @author Ilya Shaikovsky
  */
-@ManagedBean
-@SessionScoped
+@RequestScoped
 public class ImageUploadView implements Serializable {
     /**
 	 * 

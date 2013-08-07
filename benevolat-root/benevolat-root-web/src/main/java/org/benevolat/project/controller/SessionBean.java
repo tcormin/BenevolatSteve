@@ -2,7 +2,7 @@ package org.benevolat.project.controller;
 
 import java.io.Serializable;
 
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -10,7 +10,7 @@ import org.benevolat.project.model.Association;
 import org.benevolat.project.model.Benevole;
 import org.benevolat.project.model.Utilisateur;
 
-@SessionScoped
+@RequestScoped
 @Named("sessionBean")
 public class SessionBean implements Serializable {
 

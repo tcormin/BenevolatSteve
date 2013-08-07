@@ -2,15 +2,14 @@ package org.benevolat.project.controller;
 
 import java.io.Serializable;
 
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.inject.Singleton;
 
 import org.benevolat.project.model.Benevole;
 import org.benevolat.project.service.BenevoleService;
 
-@Singleton
-//@RequestScoped
+@RequestScoped
 @Named("benevoleView")
 public class BenevoleView implements Serializable{
 

@@ -7,6 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 import javax.validation.constraints.Size;
@@ -37,7 +38,7 @@ public class Association extends Utilisateur{
 	
 	private Domaine domaineNiveau1;
 	
-	@OneToMany(mappedBy="association", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="association", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private Collection<Mission> missions;
 	
 	@Transient
