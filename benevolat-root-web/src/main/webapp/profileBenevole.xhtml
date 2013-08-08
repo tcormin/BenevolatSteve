@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a4j="http://richfaces.org/a4j" xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:rich="http://richfaces.org/rich" xmlns:p="http://primefaces.org/rich">
+
+<body>
+<ui:composition template="WEB-INF/templates/template.xhtml">
+
+    <ui:define name="title"><ui:insert name="Rich faces sample" /></ui:define>
+
+    <ui:define name="mainContent">
+    	<!-- Informations -->
+    	<h1>#{benevoleView.b.nom} #{benevoleView.b.prenom}</h1>
+    	<h:form>
+        <div style="position:relative; width:70%; height:35%; float:left;">
+			<h:panelGrid columns="2">
+				<h:outputText value="Date de naissance :" />
+				<h:outputText value="#{benevoleView.b.date}" />
+				
+				<h:outputText value="Profession :" />
+				<h:outputText value="#{benevoleView.b.profession}"/>
+				
+				<h:outputText value="Email :" />
+				<h:outputLink value="mailto:#{benevoleView.b.email}"><h:outputText value="#{benevoleView.b.email}"/></h:outputLink>
+				
+				<h:outputText value="Site :"/>
+				<h:outputLink target="_blank" value="http://#{benevoleView.b.url}"><h:outputText value="#{benevoleView.b.url}"/></h:outputLink>
+				
+				<h:outputText value="Telephone :" />
+				<h:outputText value="#{benevoleView.b.telephone}"/>
+				
+				<h:outputText value="Adresse :" />
+				<h:outputText value="#{benevoleView.b.adresse}"/>
+				
+				<h:outputText value="" />
+				<h:outputText value="#{benevoleView.b.npa} #{benevoleView.b.commune}"/>
+				
+			</h:panelGrid>
+		</div>
+		
+		<!-- Boutons + photo -->
+		<div style="position:relative; width:19%; height:32%; float:left;">
+			<a4j:mediaOutput element="img" mimeType="image/jpeg" createContent="#{benevoleView.paint}"
+	                value="#{row}" style="height:120px;" cacheable="false"/>
+			<!-- Boutons -->
+			<h:panelGrid columns="1">
+					<a4j:commandButton value="Modifier ma photo" action="ajouterImage.jsf" rendered="#{benevoleView.isMyProfile()}">
+	        			<a4j:param name="idObjet" value="#{benevoleView.b.id}" assignTo="#{ajouterImageView.idObjet}"/>
+	        			<a4j:param name="typeObjet" value="Benevole" assignTo="#{ajouterImageView.typeObjet}"/>
+	        		</a4j:commandButton>
+					<a4j:commandButton value="Modifier mes informations" action="newBenevole" rendered="#{benevoleView.isMyProfile()}">
+	        			<a4j:param name="idBenevole" value="#{benevoleView.b.id}" assignTo="#{sessionBean.modify}"/>
+	        		</a4j:commandButton>
+					<h:commandLink id="cmdAttestations" value="Missions effectuées" action="myMissionsBenevole" rendered="#{not benevoleView.isMyProfile()}">
+						<a4j:param name="idBenevoleMissions" value="#{benevoleView.b.id}" assignTo="#{myMissionsView.nextBenevole}"/>
+					</h:commandLink>
+					<a4j:commandButton value="Supprimer ce bénévole" action="#{benevoleView.delete()}" rendered="#{sessionBean.isAdministrateur()}" />
+			</h:panelGrid>
+			
+		</div>
+	
+		<!-- Présentation -->
+		<div style="position:relative; width:100%; height:35%; float:left;">
+			<h2>Présentation</h2>
+			<h:outputText value="#{benevoleView.b.presentation}"/>
+		</div>
+		
+		<!-- Documents -->
+		<div style="position:relative; width:100%; height:20%; float:left;">
+			<h2>Documents</h2>
+		</div>
+		    
+        </h:form>
+    </ui:define>
+    
+</ui:composition>
+</body>
+</html>

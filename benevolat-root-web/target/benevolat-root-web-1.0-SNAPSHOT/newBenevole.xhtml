@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a4j="http://richfaces.org/a4j" xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:rich="http://richfaces.org/rich" xmlns:p="http://primefaces.org/rich">
+
+<body>
+<ui:composition template="WEB-INF/templates/template.xhtml">
+
+    <ui:define name="title"><ui:insert name="Rich faces sample" /></ui:define>
+
+    <ui:define name="mainContent">
+    	<h1>Nouveau bénévole</h1>
+    	<h:outputText value="Si vous souhaitez vous enregistrer en tant qu'association, vous devez effectuer une demande à Genève Bénévolat." />
+        <div style="position:relative; width:100%; height:100%; float:left;">
+		<h:form>
+	        <rich:graphValidator value="#{newBenevoleView}" id="gv">
+	            <rich:panel header="Nouveau bénévole" style="width:95%">
+
+	                <h:panelGrid columns="3">
+	                
+	                	<h:outputText value="Nom d'utilisateur" />
+		                <h:inputText label="Username" id="username" required="true" width="200" value="#{newBenevoleView.b.username}"/>
+		                <rich:message for="username" ajaxRendered="true" />
+		                
+		                <h:outputText value="Mot de passe" />
+		                <h:inputSecret label="Password" id="password" required="true" width="200" value="#{newBenevoleView.b.password}"/>
+		                <rich:message for="password" ajaxRendered="true" />
+		                
+	                    <h:outputText value="Nom" />
+		                <h:inputText label="Nom" id="nom" required="true" width="200" value="#{newBenevoleView.b.nom}"/>
+		                <rich:message for="nom" ajaxRendered="true" />
+		                
+		                <h:outputText value="Prénom" />
+		                <h:inputText label="Prenom" id="prenom" required="true" width="200" value="#{newBenevoleView.b.prenom}"/>
+		                <rich:message for="prenom" ajaxRendered="true" />
+		                
+		                <h:outputText value="Date de naissance" />
+		                <rich:calendar value="#{newBenevoleView.b.dateNaissance}" id="dateNaissance" locale="FR" required="false"
+		                	popup="true" datePattern="d MMM yyy" todayControlMode="hidden" validatorMessage="Entrer une date."
+		                	showApplyButton="false" width="200" cellWidth="24px" cellHeight="22px" style="width:200px">
+		                </rich:calendar>
+		                <rich:message for="dateNaissance" ajaxRendered="true" />
+		                
+		                <h:outputText value="Email" />
+		                <h:inputText label="Email" id="email" required="true" width="200" value="#{newBenevoleView.b.email}"/>
+		                <rich:message for="email" ajaxRendered="true" />
+		                
+		                <h:outputText value="Profession" />
+		                <h:inputText label="Profession" id="profession" required="false" width="200" value="#{newBenevoleView.b.profession}"/>
+		                <rich:message for="profession" ajaxRendered="true" />
+		                
+		                <h:outputText value="Site web" />
+		                <h:inputText label="url" id="url" required="false" width="200" value="#{newBenevoleView.b.url}"/>
+		                <rich:message for="url" ajaxRendered="true" />
+		                
+		                <h:outputText value="Adresse" />
+		                <h:inputText label="Adresse" id="adresse" required="true" width="200" value="#{newBenevoleView.b.adresse}"/>
+		                <rich:message for="adresse" ajaxRendered="true" />
+		                
+		                <h:outputText value="NPA" />
+		                <h:inputText label="NPA" id="npa" required="true" width="200" value="#{newBenevoleView.b.npa}"/>
+		                <rich:message for="npa" ajaxRendered="true" />
+		                
+		                <h:outputText value="Commune" />
+		                <h:inputText label="Commune" id="commune" required="true" width="200" value="#{newBenevoleView.b.commune}"/>
+		                <rich:message for="commune" ajaxRendered="true" />
+		                
+		                <h:outputText value="Présentation" />
+		                <h:inputTextarea label="Présentation" id="presentation" rows="3" cols="50" required="true" value="#{newBenevoleView.b.presentation}"/>
+		                <rich:message for="presentation" ajaxRendered="true" />
+		                
+	                </h:panelGrid>
+
+	                <a4j:commandButton value="Enregistrer" action="#{newBenevoleView.record}" rendered="#{empty newBenevoleView.success}">
+	                	<a4j:ajax event="click" execute="@all" render="@form" />
+	                </a4j:commandButton>
+					<rich:messages for="gv" />
+	                <rich:messages globalOnly="true" />
+	                
+	                <h:panelGrid id="out" columns="3" rendered="#{not empty newBenevoleView.success}">
+		            	<h:commandLink id="cmdProfileBenevole" action="profileBenevole">
+				            <a4j:param name="nextBenevole" value="#{newBenevoleView.b.id}" assignTo="#{benevoleView.nextBenevole}"/>
+			               	<h:outputText value="Voir le benevole"/>
+						</h:commandLink>
+		            </h:panelGrid>
+	                		
+	            </rich:panel>
+                
+	        </rich:graphValidator>
+	        
+	    </h:form>
+		</div>
+    </ui:define>
+</ui:composition>
+</body>
+</html>

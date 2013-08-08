@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a4j="http://richfaces.org/a4j" xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:rich="http://richfaces.org/rich" xmlns:p="http://primefaces.org/rich">
+
+<body>
+<ui:composition template="WEB-INF/templates/template.xhtml">
+
+    <ui:define name="title"><ui:insert name="Rich faces sample" /></ui:define>
+
+    <ui:define name="mainContent">
+
+    	<h1>#{evenementView.e.nom}</h1>
+		
+    	<!-- Boutons + photo -->
+		<div style="position:relative; width:30%; height:32%; float:left;">
+			<h:panelGrid columns="1">
+				<h:form>
+	        		<a4j:commandButton value="Modifier la photo" action="ajouterImage" rendered="#{sessionBean.isAdministrateur()}">
+	        			<a4j:param name="idObjet" value="#{evenementView.e.id}" assignTo="#{ajouterImageView.idObjet}"/>
+	        			<a4j:param name="typeObjet" value="Evenement" assignTo="#{ajouterImageView.typeObjet}"/>
+	        		</a4j:commandButton>
+	        		<a4j:commandButton value="Modifier les informations" action="newEvenement"  rendered="#{sessionBean.isAdministrateur()}">
+	        			<a4j:param name="idEvenement" value="#{evenementView.e.id}" assignTo="#{sessionBean.modify}"/>
+	        		</a4j:commandButton>
+	        		<a4j:commandButton value="Supprimer cet événement" action="#{evenementView.delete()}"  rendered="#{sessionBean.isAdministrateur()}"/>
+		        </h:form>
+			</h:panelGrid>	
+		</div>
+		
+		<!-- Informations -->
+        <div style="position:relative; width:69%; height:30%; float:left; text-align: justify;">
+			<h:form>
+			<h:panelGrid columns="2">
+				<h:outputText value="Date :" />
+				<h:outputText value="#{evenementView.e.date()}" />
+				
+				<h:outputText value="Lieux :" />
+				<h:outputText value="#{evenementView.e.lieu}"/>
+				
+				<h:outputText value="Organisateur :" />
+				<h:commandLink id="cmdProfileAssociation" action="profileAssociation" value="#{evenementView.e.organisateur.nom}">
+                 	<a4j:param name="nextAssociation" value="#{evenementView.e.organisateur.id}" assignTo="#{associationView.nextAssociation}"/>
+				</h:commandLink>
+				
+				<h:outputText value="Site :"/>
+				<h:outputLink value="http://#{evenementView.e.url}"><h:outputText value="#{evenementView.e.url}"/></h:outputLink>
+			</h:panelGrid>
+			</h:form>
+			<h:outputText value="#{evenementView.e.description}"/>
+				
+		</div>
+
+		<!-- Missions -->
+		<div style="position:relative; width:100%; height:69%; float:left;">
+			<h2>Missions associées</h2>
+			<h:form>
+	        <h:panelGrid columns="1">
+	            <a4j:outputPanel id="panel" layout="block">
+	                <a4j:repeat value="#{evenementView.e.missions}" var="m" rows="6" id="repeat">
+	                    <a4j:commandLink id="cmdMission" action="profileMission">
+	                    	<a4j:param name="nextMission" value="#{m.id}" assignTo="#{missionView.nextMission}"/>
+		                    <rich:panel style="float:left; width:244px; height:80px; padding:5px; margin-right:2px;">
+		                      <f:facet name="header">
+		                            <h:panelGroup>
+		                                <h:outputText value="#{m.titre}" style="font-weight:bold" />
+		                            </h:panelGroup>
+		                        </f:facet>
+		                        <h:panelGrid columns="2">
+		                            <img src="#{request.contextPath}/images/ags.jpg" align="left" height="16px"/>
+			                        <h:outputText value="#{m.association.acronyme}" />
+		                        </h:panelGrid>
+		                        <h:outputText value="#{m.lieu}" />
+		                    </rich:panel>
+						</a4j:commandLink>
+	                </a4j:repeat>
+	            </a4j:outputPanel>
+	        </h:panelGrid> 
+	         <div style="text-align:center;">
+				<a4j:outputPanel layout="inline">
+				<rich:dataScroller for="repeat" render="panel" />
+			</a4j:outputPanel>
+			</div>
+    	</h:form>
+		</div>
+    </ui:define>
+    
+</ui:composition>
+</body>
+</html>

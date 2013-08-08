@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a4j="http://richfaces.org/a4j" xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:rich="http://richfaces.org/rich" xmlns:p="http://primefaces.org/rich">
+
+<body>
+<ui:composition template="WEB-INF/templates/template.xhtml">
+
+    <ui:define name="title"><ui:insert name="Rich faces sample" /></ui:define>
+
+    <ui:define name="mainContent">
+    	<div style="position:relative; width:100%; height:100%; float:center;">
+			<h:form>
+				<h:panelGrid columns="2">
+           				
+              		<h:outputText value="Nom d'utilisateur" />
+					<h:inputText label="Username" id="username" required="true" width="200" value="#{loginView.username}"/>
+					
+					<h:outputText value="Mot de passe" />
+					<h:inputSecret label="Password" id="password" required="true" width="200" value="#{loginView.password}"/>
+
+ 				</h:panelGrid>
+
+				<rich:messages for="gv" />
+	            <rich:messages globalOnly="true" />
+	               
+				<a4j:commandButton value="Login" action="#{loginView.login()}" rendered="#{not sessionBean.log}" />
+			</h:form>
+		</div>
+    </ui:define>
+    
+</ui:composition>
+</body>
+</html>

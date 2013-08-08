@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+      version="3.0"> 
+ <display-name>Benevolat</display-name>
+ 
+ <context-param>
+  <param-name>javax.faces.PROJECT_STAGE</param-name>
+  <param-value>Development</param-value>
+ </context-param>
+ 
+ <context-param>
+    <param-name>facelets.DEVELOPMENT</param-name>
+    <param-value>true</param-value>
+  </context-param>
+  <context-param>
+    <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+    <param-value>client</param-value>
+  </context-param>
+
+ <context-param>
+    <param-name>org.richfaces.skin</param-name>
+    <param-value>blueSky</param-value>
+</context-param>
+
+ <context-param>
+  <param-name>javax.faces.SKIP_COMMENTS</param-name>
+  <param-value>true</param-value>
+ </context-param>
+
+ <servlet>
+  <servlet-name>Faces Servlet</servlet-name>
+  <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+  <load-on-startup>1</load-on-startup>
+ </servlet>
+ <servlet-mapping>
+  <servlet-name>Faces Servlet</servlet-name>
+  <url-pattern>*.jsf</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+  <servlet-name>Faces Servlet</servlet-name>
+  <url-pattern>/faces/*</url-pattern>
+ </servlet-mapping>
+ <session-config>
+  <session-timeout>30</session-timeout>
+ </session-config>
+ <mime-mapping>
+  <extension>ecss</extension>
+  <mime-type>text/css</mime-type>
+ </mime-mapping>
+ <welcome-file-list>
+  <welcome-file>faces/index.xhtml</welcome-file>
+ </welcome-file-list>
+<!--  <login-config> -->
+<!--   <auth-method>BASIC</auth-method> -->
+<!--  </login-config> -->
+ 
+<login-config>
+    <auth-method>FORM</auth-method>
+    <realm-name>User Auth</realm-name>
+    <form-login-config>
+      <form-login-page>/index.jsp</form-login-page>
+      <form-error-page>/index.jsp</form-error-page>
+    </form-login-config>
+  </login-config>
+  <security-role>
+    <role-name>ASSOCIATION</role-name>
+  </security-role>
+  <security-role>
+    <role-name>BENEVOLE</role-name>
+  </security-role>
+  <security-role>
+    <role-name>ADMINISTRATEUR</role-name>
+  </security-role>
+ <listener>
+    <listener-class>org.benevolat.project.util.SecurityListener</listener-class>
+</listener>
+<!--  <filter> -->
+<!--  	<display-name>Ajax4jsf Filter</display-name> -->
+<!--  	<filter-name>ajax4jsf</filter-name> -->
+<!--  	<filter-class>org.ajax4jsf.Filter</filter-class> -->
+<!--  	<init-param> -->
+<!--  		<param-name>createTempFiles</param-name> -->
+<!--  		<param-value>false</param-value> -->
+<!--  	</init-param> -->
+<!--  	<init-param> -->
+<!--  		<param-name>maxRequestSize</param-name> -->
+<!--  		<param-value>65535</param-value> -->
+<!--  	</init-param> -->
+<!--  </filter> -->
+
+</web-app>

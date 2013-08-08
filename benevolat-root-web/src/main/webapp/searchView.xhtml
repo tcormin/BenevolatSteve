@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a4j="http://richfaces.org/a4j" xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:rich="http://richfaces.org/rich" xmlns:p="http://primefaces.org/rich">
+
+<body>
+<ui:composition template="WEB-INF/templates/template.xhtml">
+
+    <ui:define name="title"><ui:insert name="A propos" /></ui:define>
+
+    <ui:define name="mainContent">
+        <h:outputText value="Résultat pour la recherche de : #{searchView.searchText} " style="font-weight:bold" />
+    
+    	<h:form>
+        	<rich:tabPanel switchType="ajax" id="tp" headerPosition="top" headerLocation="center">
+	            <rich:tab header="Evenements">
+	            	<h:panelGrid columns="1">
+			            <a4j:outputPanel id="panelE" layout="block">
+			                <a4j:repeat value="#{searchView.evenements}" var="e" rows="9" id="repeatE">
+			                    <a4j:commandLink id="cmdEvenements" action="profileEvenement">
+			                    	<a4j:param name="nextEvenement" value="#{e.id}" assignTo="#{evenementView.nextEvenement}"/>
+				                    <rich:panel style="float:left; width:230px; height:80px; padding:5px; margin-right:2px;">
+				                      <f:facet name="header">
+				                            <h:panelGroup>
+				                                <h:outputText value="#{e.nom}" style="font-weight:bold" />
+				                            </h:panelGroup>
+				                        </f:facet>
+				                        <h:panelGrid columns="1">
+				                            <h:outputText value="#{e.url}" />
+				                            <h:outputText value="#{e.lieu}" />
+				                        </h:panelGrid>
+				                    </rich:panel>
+								</a4j:commandLink>
+			                </a4j:repeat>
+			            </a4j:outputPanel>
+			        </h:panelGrid> 
+			        <div style="text-align:center;">
+						<a4j:outputPanel layout="inline"  rendered="#{not searchView.evenementsEmpty}">
+						<rich:dataScroller for="repeatE" render="panelE" />
+						</a4j:outputPanel>
+					</div>
+					<h:outputText value="Aucun événement trouvé" rendered="#{searchView.evenementsEmpty}"/>
+	            </rich:tab>
+	            
+        		<rich:tab header="Associations">
+        			<h:panelGrid columns="1">
+			            <a4j:outputPanel id="panelA" layout="block">
+			                <a4j:repeat value="#{searchView.associations}" var="a" rows="9" id="repeatA">
+			                    <a4j:commandLink id="cmdAssociation" action="profileAssociation">
+			                    	<a4j:param name="nextAssociation" value="#{a.id}" assignTo="#{associationView.nextAssociation}"/>
+				                    <rich:panel style="float:left; width:230px; height:80px; padding:5px; margin-right:2px;">
+				                      <f:facet name="header">
+				                            <h:panelGroup>
+				                                <h:outputText value="#{a.acronyme}" style="font-weight:bold" />
+				                            </h:panelGroup>
+				                        </f:facet>
+				                        <h:panelGrid columns="1">
+				                            <img src="#{request.contextPath}/images/ags.jpg" align="left" height="30px"/>
+				                            <h:outputText value="#{a.domaineNiveau1}" />
+				                        </h:panelGrid>
+				                    </rich:panel>
+								</a4j:commandLink>
+			                </a4j:repeat>
+			            </a4j:outputPanel>
+			        </h:panelGrid> 
+			        <div style="text-align:center;">
+						<a4j:outputPanel layout="inline" rendered="#{not searchView.associationsEmpty}">
+						<rich:dataScroller for="repeatA" render="panelA" />
+					</a4j:outputPanel>
+					</div>
+					<h:outputText value="Aucune association trouvée" rendered="#{searchView.associationsEmpty}"/>
+	            </rich:tab>
+	            
+	            <rich:tab header="Missions ponctuelles">
+	            	 <h:panelGrid columns="1">
+			            <a4j:outputPanel id="panelMP" layout="block">
+			                <a4j:repeat value="#{searchView.missionsPonctuelles}" var="m" rows="9" id="repeatMP">
+			                    <a4j:commandLink id="cmdMyMission" action="profileMission">
+			                    	<a4j:param name="nextMission" value="#{m.id}" assignTo="#{missionView.nextMission}"/>
+				                    <rich:panel style="float:left; width:230px; height:80px; padding:5px; margin-right:2px;">
+				                      <f:facet name="header">
+				                            <h:panelGroup>
+				                                <h:outputText value="#{m.titre}" style="font-weight:bold" />
+				                            </h:panelGroup>
+				                        </f:facet>
+				                        <h:panelGrid columns="1">
+				                            <h:outputText value="#{m.association.acronyme}" />
+			                        		<h:outputText value="Date" />
+				                        </h:panelGrid>
+				                    </rich:panel>
+								</a4j:commandLink>
+			                </a4j:repeat>
+			            </a4j:outputPanel>
+			        </h:panelGrid> 
+			        <div style="text-align:center;">
+						<a4j:outputPanel layout="inline" rendered="#{not searchView.missionsPonctuellesEmpty}">
+						<rich:dataScroller for="repeatMP" render="panelMP" />
+					</a4j:outputPanel>
+					</div>
+					<h:outputText value="Aucune mission ponctuelle trouvée" rendered="#{searchView.missionsPonctuellesEmpty}"/>
+	            </rich:tab>
+	            
+	            <rich:tab header="Missions régulières">
+	                <h:panelGrid columns="1">
+			            <a4j:outputPanel id="panelMR" layout="block">
+			                <a4j:repeat value="#{searchView.missionsRegulieres}" var="m" rows="9" id="repeatMR" >
+			                    <a4j:commandLink id="cmdMyMission" action="profileMission">
+			                    	<a4j:param name="nextMission" value="#{m.id}" assignTo="#{missionView.nextMission}"/>
+				                    <rich:panel style="float:left; width:230px; height:80px; padding:5px; margin-right:2px;">
+				                      <f:facet name="header">
+				                            <h:panelGroup>
+				                                <h:outputText value="#{m.titre}" style="font-weight:bold" />
+				                            </h:panelGroup>
+				                        </f:facet>
+				                        <h:panelGrid columns="1">
+				                            <h:outputText value="#{m.association.acronyme}" />
+			                        		<h:outputText value="Date" />
+				                        </h:panelGrid>
+				                    </rich:panel>
+								</a4j:commandLink>
+			                </a4j:repeat>
+			            </a4j:outputPanel>
+			        </h:panelGrid> 
+			        <div style="text-align:center;">
+						<a4j:outputPanel layout="inline" rendered="#{not searchView.missionsRegulieresEmpty}">
+						<rich:dataScroller for="repeatMR" render="panelMR" />
+					</a4j:outputPanel>
+					</div>
+					<h:outputText value="Aucune mission régulière trouvée" rendered="#{searchView.missionsRegulieresEmpty}"/>
+	            </rich:tab>
+           </rich:tabPanel>
+        </h:form>
+        
+    </ui:define>
+    
+</ui:composition>
+</body>
+</html>

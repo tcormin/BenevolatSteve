@@ -1,0 +1,696 @@
+/* 
+ * =============================================================================
+ * Shared page properties ======================================================
+ * =============================================================================
+ */
+html,body,* {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}
+
+* {
+    font-family: Calibri;
+    font-size: 14px;
+    text-align: left;
+}
+
+justify {
+    font-family: Calibri;
+    font-size: 14px;
+    text-align: justify;
+}
+
+center {
+    font-family: Calibri;
+    font-size: 14px;
+    text-align: center;
+}
+
+a {
+    color: black;
+}
+
+a img {
+    border: none;
+}
+
+hr {
+    height: 2px;
+    padding: 0;
+    background-color: rgb(0, 51, 71);
+    border: 0;
+}
+
+p {
+    margin: 1em 0;
+}
+
+ul {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 22px;
+}
+
+ul li {
+    
+}
+
+select,input {
+    font-size: 14px;
+}
+
+h1,h2,h3 {
+    margin-top: 0.2em;
+    margin-bottom: 0.5em;
+}
+
+h1 {
+    font-size: 1.5em;
+}
+
+h2 {
+    font-size: 1.3em;
+}
+
+h3 {
+    font-size: 1.2em;
+}
+
+div h1,div h2,div h3 {
+    margin-top: 0px;
+}
+
+.centerContainer {
+    position: relative;
+    width: 1000px;
+    min-height: 600px;
+    margin: 0px auto;
+    /*border: 2px solid red;*/
+}
+
+.formLeft {
+    margin-top: 50px;
+    width: 65%;
+    min-height: 250px;
+    margin-left: 0;
+    margin-bottom: 50px;
+}
+
+.formRight {
+    margin-top: 50px;
+    width: 65%;
+    min-height: 250px;
+    margin-right: 0;
+    margin-bottom: 50px;
+}
+
+.ui-widget,.ui-widget .ui-widget {
+    font-size: 95%;
+    font-weight: bold;
+}
+
+.ui-fieldset-content {
+    text-align: left;
+}
+
+.ui-button-text {
+    text-align: center;
+}
+
+.alignLeft {
+    text-align: left;
+}
+
+.alignCenter {
+    text-align: center;
+}
+
+.alignRight {
+    text-align: right;
+}
+
+.floatRight {
+    float: right;
+}
+
+.floatLeft {
+    float: left;
+}
+
+.clearBoth {
+    clear: both;
+}
+
+.marginTop0 {
+    margin-top: 0px;
+}
+
+.marginTop8 {
+    margin-top: 8px;
+}
+
+.marginRight3 {
+    margin-right: 3px;
+}
+
+.width33percent {
+    width: 33%;
+    float: left;
+}
+
+
+/* 
+ * =============================================================================
+ * Richfaces theme overrides ==================================================
+ * =============================================================================
+ */
+ 
+.top {
+	vertical-align: top;
+}
+
+.info {
+	height: 202px;
+	overflow: auto;
+}
+        
+ .ecol1 {
+	vertical-align: top;
+	padding-right: 25px
+}
+
+.ecol2 {
+	vertical-align: top;
+	border-left: #ACBECE 1px solid;
+	padding-left: 10px
+}
+
+.rich-calendar-tool-btn {
+	font-family: Arial, Verdana;
+}
+        
+ .pic{
+	margin-bottom: -4px;
+	margin-right: 2px;
+}
+
+.cols{
+    vertical-align:top;
+}
+
+.barsearch {
+	height: 28px;
+	width: 200px;
+	float: right;
+}
+
+.barsearchbutton {
+	background-image: url('/faces/images/icones/search.png');
+/* 	background-color: #{ a4jSkin.generalBackgroundColor */
+}
+
+.barsearchbutton2 {
+	border-width: 1px;
+/* 	background-color: #{ a4jSkin.generalBackgroundColor */
+}
+
+.rf-ac {
+	width: 100%;
+}
+
+.rf-ac-itm-c {
+	height: 100%;
+}
+
+/* 
+ * =============================================================================
+ * Primefaces theme overrides ==================================================
+ * =============================================================================
+ */
+.noThemeDataList div {
+    background-color: none !important;
+    background: none !important;
+    border: none !important;
+    padding: 1px !important;
+    color: black !important;
+    font-weight: normal !important;
+}
+
+.noThemeDataListIndex div ul {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.noThemeDataListIndex div ul li a {
+    color: black !important;
+    text-decoration: none;
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+
+.noThemeDataListWhite div {
+    color: white !important;
+}
+
+.noThemeDataListBlack div ul li a {
+    color: black !important;
+    text-decoration: none;
+}
+
+.noThemeDataListWhite div ul li a {
+    color: white !important;
+    text-decoration: none;
+}
+
+.ui-button-highlight {
+    background: #e20000;
+    border: 1px solid #e20000;
+}
+
+.noThemeWizard ul li {
+    font-size: 14px !important;
+    font-weight: bold !important;
+}
+
+/* 
+ * =============================================================================
+ * Header ======================================================================
+ * =============================================================================
+ */
+.pageHeader {
+    position: relative;
+    color: black;
+    height: 130px;
+    margin-top : 10px;
+    /*border: 1px solid black;*/
+}
+
+#logoArea {
+    position: relative;
+    height: 70%;
+    width: 20%;
+    float: left;
+	margin-right: 8px;
+	/*border: 1px dotted black;*/
+}
+
+#photosArea {
+    position: relative;
+    height: 70%;
+    width: 78%;
+    float: left;
+    /*border: 1px dotted black;*/
+}
+
+#toolbarArea {
+    position: relative;
+    height: 30%;
+    width: 100%;
+    float: left;
+	margin-top: 5px;
+    margin-right: 5px;
+/*     background-color : rgb(197,219,249); */
+/*     border: 2px solid rgb(197,219,249); */
+    /*border: 1px dotted black;*/
+}
+
+#searchArea {
+    position: relative;
+    height: 30%;
+    width: 78%;
+    float: left;
+	margin-top: 5px;
+    border: 2px solid rgb(197,219,249);
+    /*border: 1px solid gray;*/
+}
+#iconArea {
+    position: relative;
+    height: 100%;
+    width: 30%;
+    float: left;
+    vertical-align: text-bottom;
+    background-color: rgb(197,219,249);
+    border: 2px solid rgb(197,219,249);
+    /*border: 1px solid red;*/
+}
+
+#icons {
+    position: absolute;
+    right: 3px;
+    bottom: 16px;
+}
+
+.buttonProperties {
+    height: 28px;
+    width: 28px;
+}
+
+#searchBox {
+    position: absolute;
+    right: 0px;
+    bottom: 16px;
+}
+
+/* 
+ * =============================================================================
+ * Middle ======================================================================
+ * =============================================================================
+ */
+ 
+.pageMiddle {
+    position: relative;
+    color: black;
+    min-height: 450px;
+    /*border: 1px solid yellow;*/
+}
+
+ #menuArea {
+    position: relative;
+    height: 100%;
+    width: 20%;
+    float: left;
+    /*background-color: rgb(191,191,191);
+    border: 2px solid rgb(191,191,191);*/
+    margin-top: 5px;
+    margin-right: 5px;
+    /*border: 1px solid green;*/
+}
+
+#pageContent {
+    position: relative;
+    height: 100%;
+    width: 78%;
+    float: left;
+	margin-top: 5px;
+    /*border: 1px solid red;*/ 
+}
+
+/* 
+ * =============================================================================
+ * Footer ======================================================================
+ * =============================================================================
+ */
+.pageFooter {
+    position: relative;
+    color: black;
+    clear: both;
+    text-align: center;
+    padding-bottom: 5px;
+    height: 20px;
+    margin-top: 18px;
+    border-top: 1px solid rgb(197,219,249);
+    /*border: 1px solid blue;*/
+}
+
+#footerCopyright {
+    position: relative;
+    float: left;
+    width: 25%;
+    margin-left: 300px;
+    /*border: 1px solid blue;*/
+}
+
+#footerLinks {
+    position: relative;
+    float: right;
+    width: 20%;
+    text-align: right;
+    /*border: 1px solid blue;*/
+}
+
+#footerLinks a {
+    margin-left: 3px;
+}
+
+#footerLanguage {
+    position: relative;
+    float: right;
+    width: 7%;
+    margin-top: 2px;
+}
+
+#footerLanguage form {
+    float: right;
+}
+
+#languageForm div label {
+    font-size: 90%;
+}
+
+/* 
+ * =============================================================================
+ * index.xhtml and home.xhtml ==================================================
+ * =============================================================================
+ */
+#mainImageArea {
+    position: relative;
+    float: left;
+    height: 370px;
+    margin-top: 20px;
+    margin-bottom: 8px;
+}
+
+#mainImage {
+    position: relative;
+    width: 542px;
+    height: 336px;
+}
+
+#mainSlogan {
+    font-size: 32px;
+    margin-top: 5px;
+}
+
+#loginBox {
+    position: relative;
+    width: 295px;
+    height: 90px;
+    margin-top: -65px;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 10;
+}
+
+#loginBox table {
+    text-align: center;
+}
+
+#registration {
+    position: relative;
+    width: 280px;
+    font-size: 0.8em;
+    font-weight: bold;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#registration a {
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+#mainSuggestionsArea {
+    position: relative;
+    float: left;
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 220px;
+}
+
+#recommendedBands {
+    position: relative;
+}
+
+#recommendedEvents {
+    position: relative;
+    margin-top: 20px;
+}
+
+#recommendedBands h2,#recommendedShows h2 {
+    font-size: 18px;
+}
+
+#recommendedBands li,#recommendedEvents li {
+    margin-bottom: 4px;
+}
+
+#recommendedBands p,#recommendedShows p {
+    font-size: 16px;
+}
+
+/* 
+ * =============================================================================
+ * about.xhtml =================================================================
+ * =============================================================================
+ */
+
+/* 
+ * =============================================================================
+ * contact.xhtml ===============================================================
+ * =============================================================================
+ */
+
+/* 
+ * =============================================================================
+ * help.xhtml ==================================================================
+ * =============================================================================
+ */
+
+/* 
+ * =============================================================================
+ * search.xhtml ================================================================
+ * =============================================================================
+ */
+
+/* 
+ * =============================================================================
+ * accountSummary.xhtml ========================================================
+ * =============================================================================
+ */
+#accountSummary {
+    position: relative;
+    width: 583px;
+    float: right;
+}
+
+#accountSummaryLeftCol {
+    position: relative;
+    width: 285px;
+    float: left;
+}
+
+#accountSummaryRightCol {
+    position: relative;
+    width: 285px;
+    float: right;
+}
+
+#accountSummaryPhoto {
+    position: relative;
+    float: left;
+    border: 1px solid black;
+}
+
+/* 
+ * =============================================================================
+ * inbox.xhtml =================================================================
+ * =============================================================================
+ */
+.newMessageButton {
+    float: right;
+    margin-bottom: 12px;
+}
+
+.toggleInboxSentButton {
+    float: right;
+    margin-bottom: 12px;
+    width: 155px;
+}
+
+#inappropriateInbox a {
+    font-size: 0.7em;
+}
+
+#inappropriateInbox {
+    margin-top: 2x;
+    margin-bottom: 12px;
+    float: right;
+}
+    
+
+/* 
+ * =============================================================================
+ * profile.xhtml ===============================================================
+ * =============================================================================
+ */
+.favoritesButton {
+    float: right;
+    margin-bottom: 12px;
+}
+
+#inappropriateProfile a {
+    font-size: 0.7em;
+}
+
+#inappropriateProfile {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    margin-top: 12x;
+    margin-bottom: 20px;
+}
+
+/* 
+ * =============================================================================
+ * Attestation.xhtml ==========================================================
+ * =============================================================================
+ */
+.attestationHeader {
+    position: relative;
+    color: black;
+    height: 110px;
+    width : 827px;
+    margin-top : 10px;
+}
+
+#titreArea {
+    position: relative;
+    height: 100%;
+    width: 45%;
+    float: left;
+}
+
+#attestationArea {
+    position: relative;
+    height: 100%;
+    width: 25%;
+    float: left;
+}
+
+#aquidedroitArea {
+    position: relative;
+    height: 100%;
+    width: 15%;
+    float: right;
+}
+
+.attestationMiddle {
+    position: relative;
+    color: black;
+    height: 300px;
+    width : 827px;
+    margin-top : 10px;
+}
+
+#attestationContent {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    float: left;
+}
+
+.attestationFooter {
+    position: relative;
+    color: black;
+    height: 40px;
+    margin-top : 10px; 
+    width : 827px;   
+    border-top: 1px solid rgb(197,219,249);
+}
+
+#attestationAdresse {
+    position: relative;
+    height: 100%;
+    width: 65%;
+    float: left;
+	margin-right: 8px;
+}
+
+#attestationWeb {
+    position: relative;
+    height: 100%;
+    width: 30%;
+    float: left;
+}
