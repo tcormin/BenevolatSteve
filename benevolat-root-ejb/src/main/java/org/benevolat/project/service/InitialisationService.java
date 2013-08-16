@@ -2,6 +2,7 @@ package org.benevolat.project.service;
 
 import java.util.Calendar;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;
@@ -47,7 +48,7 @@ public class InitialisationService extends PersistenceService{
 		this.save(a);
 	}
 	
-	//@PostConstruct
+	@PostConstruct
 	public void init(){
 
 		// Dates préparées
@@ -94,7 +95,7 @@ public class InitialisationService extends PersistenceService{
 		   b.setPresentation("Etudiant, musicien, matheux, fondateur de plusieurs associations et engagé dans un certain nombre d'autres.");
 		   b.setProfession("Etudiant");
 		   b.setTelephone("079 735 72 49");
-		   b.setPassword("tcormin");
+		   b.setPassword("KvqIvrlYef6qWI8nPn2dzg==");
 		   b.setDateNaissance(calNaissance.getTime());
 		   benevoleService.save(b);
 		   

@@ -1,12 +1,15 @@
 package org.benevolat.project.controller;
 
 import java.io.Serializable;
+import java.security.Principal;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 
 import org.benevolat.project.model.Utilisateur;
 import org.benevolat.project.service.UtilisateurService;
@@ -89,17 +92,23 @@ public class LoginView implements Serializable{
 	 */
 	public String login() {
 		
-		Utilisateur user = this.utilisateurService.getUserFromId(username, password);
+
 		
-		if(user == null){
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Mauvais nom d'utilisateur ou mot de passe!", "Mauvais nom d'utilisateur ou mot de passe!"));
-		}
-		else{
+		FacesContext context = FacesContext.getCurrentInstance();
+        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+        try {
+            request.login(username, password);
+            Principal principal = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
+            Utilisateur user = this.utilisateurService.getUserFromId(username);
 			sessionBean.setUser(user);
 			return "index";
-		}
-		return "";
+        } catch (ServletException e) {
+            context.addMessage(null, new FacesMessage("Unknown login"));
+            FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Mauvais nom d'utilisateur ou mot de passe!", "Mauvais nom d'utilisateur ou mot de passe!"));
+    		return "";
+        }
+
     }
 	
 	/**

@@ -35,7 +35,7 @@ public class Utilisateur {
 	private String username;
 	
 	/** password de l'utilisateur */
-	@Size(min=6, max=25, message="Longueur entre 6 et 25 caractères.")
+	@Size(min=6, max=255, message="Longueur entre 6 et 25 caractères.")
 	private String password;
 	
 	/** adresse de l'utilisateur */
@@ -58,12 +58,15 @@ public class Utilisateur {
 	//@Size(min=13, max=13, message="Format : 022 XXX XX XX")
 	private String telephone;
 	
+	private String role;
+
 	/** site web de l'utilisateur */
 	//@URL(message="Entrez un nom de domaine valide.")
 	private String url;
 	
 	/** Constructeur */
 	public Utilisateur(){
+		role = "BENEVOLE";
 	}
 	
 	/**

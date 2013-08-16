@@ -45,22 +45,24 @@ public class UtilisateurService extends PersistenceService{
 	 * @param password
 	 * @return
 	 */
-	public Utilisateur getUserFromId(String username, String password) {
+	public Utilisateur getUserFromId(String username) {
 
-		List<Benevole> b = this.getFromPassword(Benevole.class, username, password);
+		List<Benevole> b = this.getFromUsername(Benevole.class, username);
 		if(b.size()>0){
 			return b.get(0);
 		}
-		   
-		List<Administrateur> ad = this.getFromPassword(Administrateur.class, username, password);
+
+		List<Association> a = this.getFromUsername(Association.class, username);
+		if(a.size()>0){
+			return a.get(0);
+		}
+
+		List<Administrateur> ad = this.getFromUsername(Administrateur.class, username);
 		if(ad.size()>0){
 			return ad.get(0);
 		}
 		   
-		List<Association> a = this.getFromPassword(Association.class, username, password);
-		if(a.size()>0){
-			return a.get(0);
-		}
+
 		   
 		return null;
 	}
